@@ -25,7 +25,7 @@ Este repositorio es una plantilla, por lo que puedes crear directamente el nuevo
 - [Blade Icons](https://blade-ui-kit.com/blade-icons) - Iconografía SVG optimizada
 - [TailwindCSS 4.0](https://tailwindcss.com/docs) - Framework CSS utility-first
 - Configuración optimizada para desarrollo y producción
-- Scripts automatizados de instalación y desarrollo  
+- Scripts automatizados de instalación y desarrollo
 
 ---
 
