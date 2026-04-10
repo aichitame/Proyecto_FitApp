@@ -3,12 +3,15 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 
-class User extends Authenticatable
+//añado "implements FilamentUser" para que Laravel sepa que este modelo usa Filament
+class User extends Authenticatable implements FilamentUser
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
@@ -22,6 +25,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -48,6 +52,16 @@ class User extends Authenticatable
     }
 
     /**
+     * Método de seguridad crítico:
+     * solo los usuarios con el rol "admin" pueden entrar al panel /admin.
+     */
+
+    public function canAccessPanel(Panel $panel): bool{
+
+        return $this->role === 'admin';
+    }
+
+    /**
      * Get the user's initials
      */
     public function initials(): string
@@ -57,5 +71,14 @@ class User extends Authenticatable
             ->take(2)
             ->map(fn ($word) => Str::substr($word, 0, 1))
             ->implode('');
+    }
+
+    /**
+     * Relación: un usuario puede tener muchas solicitudes (requests)
+     */
+
+    public function clientRequests(): \Illuminate\Database\Eloquent\Relations\HasMany{
+
+        return $this->hasMany(ClientRequest::class);
     }
 }
