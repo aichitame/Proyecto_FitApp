@@ -13,6 +13,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Filament\Tables\Columns\TextColumn;
 
 class UserResource extends Resource
 {
@@ -54,7 +55,41 @@ public static function form(Schema $schema): Schema
 
     public static function table(Table $table): Table
     {
-        return UsersTable::configure($table);
+        return $table
+        -> columns([
+            TextColumn::make('name')
+            ->label('Nombre')
+            ->searchable()
+            ->sortable(),
+
+            TextColumn::make('email')
+            ->label('Correo electrónico')
+            ->searchable(),
+
+            TextColumn::make('role')
+            ->label('Rol')
+            ->badge()
+            ->color(fn (string $state): string => match ($state) {
+                'admin' => 'danger',
+                'client' => 'success',
+                default => 'gray',
+            })
+            ->sortable(),
+
+            TextColumn::make('created_at')
+            ->label('Fecha de registro')
+            ->dateTime()
+            ->sortable(),
+        ])
+        ->filters([
+            \Filament\Tables\Filters\SelectFilter::make('role')
+            ->label('Filtrar por rol')
+            ->options([
+                'admin' => 'Administrador',
+                'client' => 'Cliente',
+            ]),
+        ]);
+
     }
 
     public static function getRelations(): array
