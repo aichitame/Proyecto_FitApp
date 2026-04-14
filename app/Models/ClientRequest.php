@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ClientRequest extends Model
 {
@@ -16,14 +16,37 @@ class ClientRequest extends Model
         'user_id',
         'age',
         'gender',
+        'job_activity',
         'height',
         'weight',
-        'goal',
+
         'activity_level',
         'training_days',
+
+        'eating_habits',
+        'has_allergies',
+        'allergies_description',
+
+        'physical_activity_frequency',
+        'physical_activity_type',
+        'physical_limitations',
+
+        'goal',
+        'additional_observations',
+        'orientative_service_acknowledged',
+
         'food_preference',
         'notes',
+
         'status',
+        'rejection_reason',
+        'status_changed_at',
+    ];
+
+    protected $casts = [
+        'has_allergies' => 'boolean',
+        'orientative_service_acknowledged' => 'boolean',
+        'status_changed_at' => 'datetime',
     ];
 
     /**
@@ -36,11 +59,15 @@ class ClientRequest extends Model
     }
 
     /**
-     * Relación: una solicitud puede tener un plan asociado.
+     * Versiones internas del plan orientativo asoaciado a la solicitud.
      */
 
-    public function plan(): HasOne{
+    public function plans(): HasMany{
         
-        return $this->hasOne(Plan::class);
+        return $this->hasMany(Plan::class, 'client_request_id')->orderBy('version');
+    }
+
+    public function notifications(): HasMany{
+        return $this->hasMany(RequestNotification::class, 'client_request_id');
     }
 }
