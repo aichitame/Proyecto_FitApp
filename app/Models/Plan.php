@@ -4,19 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Plan extends Model
 {
+
+    use HasFactory;
     //Laravel ya asume que la tabla es 'plans', pero por seguridad la definimos
     protected $table = 'plans';
 
     protected $fillable = [
-        'admin_id',
+        'user_id',
         'client_request_id',
-        'title',
-        'diet_tips',
-        'training_tips',
-        'final_observations',
+        'name',
+        'description',
     ];
 
     /**
@@ -32,8 +33,8 @@ class Plan extends Model
      * Relación: el plan es creado por un administrador.
      */
 
-    public function admin():BelongsTo{
+    public function user():BelongsTo{
 
-        return $this->belongsTo(User::class, 'admin_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

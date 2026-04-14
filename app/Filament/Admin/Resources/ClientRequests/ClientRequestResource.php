@@ -13,7 +13,8 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 class ClientRequestResource extends Resource
 {
     protected static ?string $model = ClientRequest::class;
@@ -29,7 +30,41 @@ class ClientRequestResource extends Resource
 
     public static function table(Table $table): Table
     {
-        return ClientRequestsTable::configure($table);
+        return $table
+        ->columns([
+            TextColumn::make('user.name')
+            ->label('Cliente')
+            ->searchable()
+            ->sortable(),
+
+            TextColumn::make('age')
+            ->label('Edad')
+            ->sortable(),
+
+            TextColumn::make('weight')
+            ->label('Peso (kg)')
+            ->suffix(' kg'),
+
+            TextColumn::make('goal')
+            ->label('Objetivo')
+            ->badge()
+            ->color('info'),
+
+            TextColumn::make('created_at')
+            ->label('Fecha solicitud')
+            ->dateTime('d/m/Y H:i')
+            ->sortable(),
+        ])
+
+        ->filters([
+            SelectFilter::make('goal')
+            ->label('Objetivo')
+            ->options([
+                'loss' => 'Perder peso',
+                'gain' => 'Ganar músculo',
+                'maintain' => 'Mantenerse',
+            ]),
+        ]);
     }
 
     public static function getRelations(): array

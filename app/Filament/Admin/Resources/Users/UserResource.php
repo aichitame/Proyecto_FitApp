@@ -14,6 +14,7 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 
 class UserResource extends Resource
 {
@@ -82,7 +83,7 @@ public static function form(Schema $schema): Schema
             ->sortable(),
         ])
         ->filters([
-            \Filament\Tables\Filters\SelectFilter::make('role')
+            SelectFilter::make('role')
             ->label('Filtrar por rol')
             ->options([
                 'admin' => 'Administrador',

@@ -13,12 +13,9 @@ return new class extends Migration
     {
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('admin_id')->constrained('users');
-            $table->foreignId('client_request_id')->unique()->constrained('client_requests')->onDelete('cascade');
-            $table->string('title');
-            $table->text('diet_tips');
-            $table->text('training_tips');
-            $table->text('final_observations');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('name');
+            $table->text('description');
             $table->timestamps();
         });
     }
