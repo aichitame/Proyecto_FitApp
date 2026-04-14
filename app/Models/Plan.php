@@ -18,10 +18,18 @@ class Plan extends Model
         'client_request_id',
         'name',
         'description',
+        'version',
+        'status',
+        'published_at',
+    ];
+
+    protected $casts = [
+        'version' => 'integer',
+        'published_at' => 'datetime',
     ];
 
     /**
-     * Relación: el plan pertenece a una solicitud específica
+     * Relación: esta versión del plan pertenece a una solicitud concreta
      */
 
     public function clientRequest(): BelongsTo{
@@ -30,11 +38,27 @@ class Plan extends Model
     }
 
     /**
-     * Relación: el plan es creado por un administrador.
+     * Usuario administrador que crea o edita esta versión.
      */
 
     public function user():BelongsTo{
 
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    /**
+     * Scope opcional para recuperar solo planes publicados.
+    */
+
+    public function scopePublished($query){
+        return $query->where('status', 'published');
+    }
+
+    /**
+     * Scope opcional para recuperar borradores.
+     */
+
+    public function scopeDraft($query){
+        return $query->where('status', 'draft');
     }
 }
