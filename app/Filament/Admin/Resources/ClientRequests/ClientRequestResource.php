@@ -2,11 +2,11 @@
 
 namespace App\Filament\Admin\Resources\ClientRequests;
 
+use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Admin\Resources\ClientRequests\Pages\CreateClientRequest;
 use App\Filament\Admin\Resources\ClientRequests\Pages\EditClientRequest;
 use App\Filament\Admin\Resources\ClientRequests\Pages\ListClientRequests;
 use App\Filament\Admin\Resources\ClientRequests\Schemas\ClientRequestForm;
-use App\Filament\Admin\Resources\ClientRequests\Tables\ClientRequestsTable;
 use App\Models\ClientRequest;
 use BackedEnum;
 use Filament\Resources\Resource;
@@ -15,6 +15,7 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
+
 class ClientRequestResource extends Resource
 {
     protected static ?string $model = ClientRequest::class;
@@ -32,18 +33,38 @@ class ClientRequestResource extends Resource
     {
         return $table
         ->columns([
+            TextColumn::make('id')
+            ->label('Solicitud')
+            ->sortable(),
+
             TextColumn::make('user.name')
             ->label('Cliente')
             ->searchable()
             ->sortable(),
 
-            TextColumn::make('age')
-            ->label('Edad')
-            ->sortable(),
+            TextColumn::make('user.email')
+            ->label('Correo electrónico')
+            ->searchable()
+            ->toggleable(),
 
-            TextColumn::make('weight')
-            ->label('Peso (kg)')
-            ->suffix(' kg'),
+            TextColumn::make('status')
+            ->label('Estado')
+            ->badge()
+            ->color(fn(string $state): string => match ($state){
+                'pending' => 'warning',
+                'in_review' => 'info',
+                'completed' => 'success',
+                'rejected' => 'danger',
+                default => 'gray',
+            })
+            ->formatStateUsing(fn (string $state): string => match ($state){
+                'pending' => 'Pendiente',
+                'in_review' => 'En revisión',
+                'completed' => 'Completada',
+                'rejected' => 'Rechazada',
+                default => $state,
+            })
+            ->sortable(),
 
             TextColumn::make('goal')
             ->label('Objetivo')
@@ -54,9 +75,24 @@ class ClientRequestResource extends Resource
             ->label('Fecha solicitud')
             ->dateTime('d/m/Y H:i')
             ->sortable(),
-        ])
 
+            TextColumn::make('status_changed_at')
+            ->label('Último cambio de estado')
+            ->dateTime('d/m/Y H:i')
+            ->placeholder('-')
+            ->sortable(),
+
+        ])
         ->filters([
+            SelectFilter::make('status')
+            ->label('Estado')
+            ->options([
+                'pending' => 'Pendiente',
+                'in_review' => 'En revisión',
+                'completed' => 'Completada',
+                'rejected' => 'Rechazada',
+            ]),
+
             SelectFilter::make('goal')
             ->label('Objetivo')
             ->options([
@@ -69,9 +105,7 @@ class ClientRequestResource extends Resource
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array
@@ -81,5 +115,19 @@ class ClientRequestResource extends Resource
             'create' => CreateClientRequest::route('/create'),
             'edit' => EditClientRequest::route('/{record}/edit'),
         ];
+    }
+      public static function getEloquentQuery(): Builder {
+        return parent::getEloquentQuery()
+        ->with('user')
+        ->orderByRaw("
+        CASE status
+            WHEN 'pending' THEN 1
+            WHEN 'in_review' THEN 2
+            WHEN 'completed' THEN 3
+            WHEN 'rejected' THEN 4
+            ELSE 5
+            END
+            ")
+            ->orderByDesc('created_at');
     }
 }

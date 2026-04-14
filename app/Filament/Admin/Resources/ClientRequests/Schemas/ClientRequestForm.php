@@ -15,35 +15,56 @@ class ClientRequestForm
             ->components([
                 Select::make('user_id')
                     ->relationship('user', 'name')
-                    ->label('Customer')
+                    ->label('Cliente')
                     ->required(),
+
                 TextInput::make('age')
+                    ->label('Edad')
                     ->required()
                     ->numeric(),
+
                 TextInput::make('gender')
+                    ->label('Sexo')
                     ->required(),
+
                 TextInput::make('height')
+                    ->label('Altura')
                     ->required()
                     ->numeric(),
+
                 TextInput::make('weight')
+                    ->label('Peso')
                     ->required()
                     ->numeric(),
+
                 TextInput::make('goal')
+                    ->label('Objetivo')
                     ->required(),
+
                 TextInput::make('activity_level')
+                    ->label('Nivel de actividad')
                     ->required(),
+
                 TextInput::make('training_days')
+                    ->label('Días de entrenamiento')
                     ->required()
                     ->numeric(),
+
                 TextInput::make('food_preference')
+                    ->label('Preferencia alimentaria')
                     ->required(),
+
                 Textarea::make('notes')
+                    ->label('Notas')
                     ->columnSpanFull(),
+
                 Select::make('status')
+                ->label('Estado')
                 ->options([
                     'pending' => 'Pending',
-                    'processing' => 'In Progress',
+                    'in_review' => 'En revisión',
                     'completed' => 'Completed',
+                    'rejected' => 'Rechazada',
                 ])
                     ->default('pending')
                     ->required()

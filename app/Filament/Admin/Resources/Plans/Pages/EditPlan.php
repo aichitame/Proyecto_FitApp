@@ -5,24 +5,87 @@ namespace App\Filament\Admin\Resources\Plans\Pages;
 use App\Filament\Admin\Resources\Plans\PlanResource;
 use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
+use Illuminate\Support\Facades\Auth;
 
 class EditPlan extends EditRecord
 {
     protected static string $resource = PlanResource::class;
 
+    protected function mutateFormDataBeforeSave(array $data): array
+    {
+        $data['user_id'] = Auth::id();
+
+        if (($data['status'] ?? 'draft') === 'published') {
+            if (blank($this->record->published_at)) {
+                $data['published_at'] = now();
+            }
+        } else {
+            $data['published_at'] = null;
+        }
+
+        return $data;
+    }
+
+    protected function afterSave(): void
+    {
+        $this->updateClientRequestStatus($this->record->clientRequest);
+    }
+
     protected function getHeaderActions(): array
     {
         return [
             DeleteAction::make()
-            ->before(function ($record) {
-                //con 'before' accedemos a la relación antes de que el plan
-                //desaparezca de la base de datos
-                if($record->clientRequest){
-                    $record->clientRequest->update([
-                        'status' => 'pending',
-                    ]);
-                }
-            }),
+                ->before(function ($record) {
+                    $this->updateClientRequestStatus($record->clientRequest, $record->id);
+                }),
         ];
+    }
+
+    private function updateClientRequestStatus($clientRequest, ?int $excludePlanId = null): void
+    {
+        if (! $clientRequest) {
+            return;
+        }
+
+        if ($clientRequest->status === 'rejected') {
+            return;
+        }
+
+        $plansQuery = $clientRequest->plans();
+
+        if ($excludePlanId !== null) {
+            $plansQuery->where('id', '!=', $excludePlanId);
+        }
+
+        $hasPublishedPlans = (clone $plansQuery)
+            ->where('status', 'published')
+            ->exists();
+
+        $hasDraftPlans = (clone $plansQuery)
+            ->where('status', 'draft')
+            ->exists();
+
+        if ($hasPublishedPlans) {
+            $clientRequest->update([
+                'status' => 'completed',
+                'status_changed_at' => now(),
+            ]);
+
+            return;
+        }
+
+        if ($hasDraftPlans) {
+            $clientRequest->update([
+                'status' => 'in_review',
+                'status_changed_at' => now(),
+            ]);
+
+            return;
+        }
+
+        $clientRequest->update([
+            'status' => 'pending',
+            'status_changed_at' => now(),
+        ]);
     }
 }

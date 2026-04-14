@@ -31,62 +31,123 @@ class PlanResource extends Resource
     {
         return $schema
         ->components([
-            Section::make('Asignación del plan')
+            Section::make('Asignación y control')
             ->schema([
-                Select::make('user_id')
-                ->relationship('user', 'name')
-                ->label('Cliente')
-                ->required()
-                ->searchable(),
-            
-            TextInput::make('name')
-            ->label('Nombre del plan')
-            ->placeholder('Ej: rutina hipertrofia v1')
-            ->required(),
-            ])->columns(2),
+                Select::make('client_request_id')
+                ->relationship('clientRequest', 'id')
+                ->label('Solicitud')
+                ->getOptionLabelFromRecordUsing(fn ($record) => sprintf(
+                    '#%s - %s (%s)',
+                    $record->id,
+                    $record->user?->name ?? 'Sin cliente',
+                    $record->status
+                ))
+                ->preload()
+                ->required(),
 
-
-            Section::make('Contenido del plan')
-            ->schema([
-                RichEditor::make('description')
-                ->label('Instrucciones o dieta')
-                ->placeholder('Escribe aquí el plan detallado...')
+                TextInput::make('name')
+                ->label('Nombre del plan')
+                ->placeholder('Ej: plan orientativo v1')
                 ->required()
-                ->columnSpanFull(),
-                ]),
-            ]);
-    }
+                ->maxLength(255),
+
+                TextInput::make('version')
+                ->label('Versión')
+                ->numeric()
+                ->default(1)
+                ->required(),
+
+                Select::make('status')
+                ->label('Estado del plan')
+                ->options([
+                    'draft' => 'Borrador',
+                    'published' => 'Publicado'
+                ])
+                ->default('draft')
+                ->required()
+                ->native(false),
+            ])
+            ->columns(2),
+
+        Section::make('Contenido del plan')
+        ->schema([
+            RichEditor::make('description')
+            ->label('Contenido del plan orientativo')
+            ->placeholder('Escribe aquí el plan detallado...')
+            ->required()
+            ->columnSpanFull(),
+        ]),
+
+    ]);
+}
 
     public static function table(Table $table): Table
     {
         return $table
         ->columns([
-            TextColumn::make('user.name')
-            ->label('Cliente')
-            ->sortable()
-            ->searchable(),
+            TextColumn::make('clientRequest.id')
+            ->label('Solicitud')
+            ->sortable(),
+
+        TextColumn::make('clientRequest.user.name')
+        ->label('Cliente')
+        ->sortable()
+        ->searchable(),
 
         TextColumn::make('name')
         ->label('Título del plan')
         ->searchable(),
 
+        TextColumn::make('version')
+        ->label('Versión')
+        ->badge()
+        ->sortable(),
+
+        TextColumn::make('status')
+        ->label('Estado')
+        ->badge()
+        ->color(fn (string $state): string => match ($state){
+            'draft' => 'warning',
+            'published' => 'success',
+            default => 'gray',
+        })
+        ->sortable(),
+
+        TextColumn::make('published_at')
+        ->label('Publicado el')
+        ->dateTime('d/m/Y H:i')
+        ->placeholder('-')
+        ->sortable(),
+
         TextColumn::make('created_at')
         ->label('Fecha de creación')
-        ->dateTime('d/m/Y')
+        ->dateTime('d/m/Y H:i')
         ->sortable(),
+
         ])
         ->filters([
-        SelectFilter::make('user_id')
-        ->relationship('user', 'name')
-        ->label('Filtrar por cliente')
-        ]);
+        SelectFilter::make('status')
+        ->label('Estado del plan')
+        ->options([
+            'draft' => 'Borrador',
+            'published' => 'Publicado'
+        ]),
+
+        SelectFilter::make('client_request_status')
+        ->label('Estado de la solicitud')
+        ->relationship('clientRequest', 'status')
+        ->options([
+            'pending' => 'Pendiente',
+            'in_review' => 'En revisión',
+            'completed' => 'Completada',
+            'rejected' => 'Rechazada',
+        ]),
+    ]);
     }
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array
