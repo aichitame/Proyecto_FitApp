@@ -11,7 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::table('plans', function (Blueprint $table){
+            $table->foreignId('client_request_id')
+            ->nullable()
+            ->after('user_id')
+            ->constrained('client_requests')
+            ->nullOnDelete();
+
+            $table->unsignedInteger('version')->default(1)->after('client_request_id');
+
+            $table->string('status')->default('draft')->after('description');
+            $table->timestamp('published_at')->nullable()->after('status');
+        });
     }
 
     /**
@@ -19,6 +30,13 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('plans', function (Blueprint $table){
+           $table->dropConstrainedForeignId('client_request_id');
+           $table->dropColumn([
+            'version',
+            'status',
+            'published_at',
+           ]);
+        });
     }
 };
