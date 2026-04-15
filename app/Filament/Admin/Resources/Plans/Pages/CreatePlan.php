@@ -6,6 +6,7 @@ use App\Filament\Admin\Resources\Plans\PlanResource;
 use App\Models\Plan;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Support\Facades\Auth;
+use App\Models\RequestNotification;
 
 class CreatePlan extends CreateRecord
 {
@@ -42,7 +43,15 @@ class CreatePlan extends CreateRecord
                 'status' => 'completed',
                 'status_changed_at' => now(),
             ]);
-        }else{
+
+        RequestNotification::create([
+            'client_request_id' => $clientRequest->id,
+            'type' => 'plan_available',
+            'status' => 'pending',
+            'attempts' => 0,
+            'sent_by_user_id' => Auth::id(),
+        ]);
+    }   else{
             $clientRequest->update([
                 'status' => 'in_review',
                 'status_changed_at' => now(),
