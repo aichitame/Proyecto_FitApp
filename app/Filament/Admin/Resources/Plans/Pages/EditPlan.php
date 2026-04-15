@@ -2,11 +2,12 @@
 
 namespace App\Filament\Admin\Resources\Plans\Pages;
 
+use App\Models\RequestNotification;
+use App\Models\ClientRequest;
 use App\Filament\Admin\Resources\Plans\PlanResource;
 use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
 use Illuminate\Support\Facades\Auth;
-use App\Models\RequestNotification;
 
 class EditPlan extends EditRecord
 {
@@ -17,7 +18,7 @@ class EditPlan extends EditRecord
     protected function mutateFormDataBeforeSave(array $data): array
     {
         $this->wasPublished = $this->record->status === 'published';
-        
+
         $data['user_id'] = Auth::id();
 
         if (($data['status'] ?? 'draft') === 'published') {
@@ -63,7 +64,7 @@ class EditPlan extends EditRecord
         ];
     }
 
-    private function updateClientRequestStatus($clientRequest, ?int $excludePlanId = null): void
+    private function updateClientRequestStatus(?ClientRequest $clientRequest, ?int $excludePlanId = null): void {
     {
         if (! $clientRequest) {
             return;
@@ -109,5 +110,7 @@ class EditPlan extends EditRecord
             'status' => 'pending',
             'status_changed_at' => now(),
         ]);
+    }
+
     }
 }
