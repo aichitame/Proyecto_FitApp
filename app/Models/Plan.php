@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Builder;
 
 class Plan extends Model
 {
@@ -50,7 +51,7 @@ class Plan extends Model
      * Scope opcional para recuperar solo planes publicados.
     */
 
-    public function scopePublished($query){
+    public function scopePublished(Builder $query): Builder {
         return $query->where('status', 'published');
     }
 
@@ -58,7 +59,7 @@ class Plan extends Model
      * Scope opcional para recuperar borradores.
      */
 
-    public function scopeDraft($query){
+    public function scopeDraft(Builder $query): Builder {
         return $query->where('status', 'draft');
     }
 }
