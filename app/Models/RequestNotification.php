@@ -35,7 +35,7 @@ class RequestNotification extends Model
  */
 
 public function sentByUser(): BelongsTo{
-    return $this->belonsTo(User::class, 'sent_by_user_id');
+    return $this->belongsTo(User::class, 'sent_by_user_id');
 }
 
 }
