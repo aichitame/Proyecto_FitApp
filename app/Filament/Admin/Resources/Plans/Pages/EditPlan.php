@@ -6,13 +6,18 @@ use App\Filament\Admin\Resources\Plans\PlanResource;
 use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
 use Illuminate\Support\Facades\Auth;
+use App\Models\RequestNotification;
 
 class EditPlan extends EditRecord
 {
     protected static string $resource = PlanResource::class;
 
+    protected bool $wasPublished = false;
+
     protected function mutateFormDataBeforeSave(array $data): array
     {
+        $this->wasPublished = $this->record->status === 'published';
+        
         $data['user_id'] = Auth::id();
 
         if (($data['status'] ?? 'draft') === 'published') {
@@ -28,7 +33,24 @@ class EditPlan extends EditRecord
 
     protected function afterSave(): void
     {
-        $this->updateClientRequestStatus($this->record->clientRequest);
+        $plan = $this->record;
+        $clientRequest = $plan->clientRequest;
+
+        $this->updateClientRequestStatus($clientRequest);
+
+        if (
+            $clientRequest &&
+            ! $this->wasPublished &&
+            $plan->status === 'published'
+        ){
+            RequestNotification::create([
+                'client_request_id' => $clientRequest->id,
+                'type' => 'plan_available',
+                'status' => 'pending',
+                'attempts' => 0,
+                'sent_by_user_id' => Auth::id(),
+            ]);
+        }
     }
 
     protected function getHeaderActions(): array
