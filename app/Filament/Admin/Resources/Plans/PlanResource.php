@@ -36,12 +36,8 @@ class PlanResource extends Resource
                 Select::make('client_request_id')
                 ->relationship('clientRequest', 'id')
                 ->label('Solicitud')
-                ->getOptionLabelFromRecordUsing(fn ($record) => sprintf(
-                    '#%s - %s (%s)',
-                    $record->id,
-                    $record->user?->name ?? 'Sin cliente',
-                    $record->status
-                ))
+                ->getOptionLabelFromRecordUsing(fn ($record) =>
+                'Solicitud #'.$record->id.' - '.($record->user?->name ?? 'Sin cliente').' - '.$record->status)
                 ->preload()
                 ->required(),
 
@@ -50,12 +46,6 @@ class PlanResource extends Resource
                 ->placeholder('Ej: plan orientativo v1')
                 ->required()
                 ->maxLength(255),
-
-                TextInput::make('version')
-                ->label('Versión')
-                ->numeric()
-                ->default(1)
-                ->required(),
 
                 Select::make('status')
                 ->label('Estado del plan')

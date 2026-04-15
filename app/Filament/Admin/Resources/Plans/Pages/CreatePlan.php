@@ -3,6 +3,7 @@
 namespace App\Filament\Admin\Resources\Plans\Pages;
 
 use App\Filament\Admin\Resources\Plans\PlanResource;
+use App\Models\Plan;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,6 +13,12 @@ class CreatePlan extends CreateRecord
 
     protected function mutateFormDataBeforeCreate(array $data): array{
         $data['user_id'] = Auth::id();
+
+        $lastVersion = Plan::query()
+        ->where('client_request_id', $data['client_request_id'])
+        ->max('version');
+
+        $data['version'] = $lastVersion ? $lastVersion + 1 : 1;
 
         if(($data['status'] ?? 'draft') === 'published'){
             $data['published_at'] = now();
