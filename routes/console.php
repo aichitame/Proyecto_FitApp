@@ -56,7 +56,7 @@ foreach ($pendingNotifications as $notification){
             'error_message' => null,
         ]);
 
-        $this->info("Notificación {$notification->id} enviada a {$user->mail}");
+        $this->info("Notificación {$notification->id} enviada a {$user->email}");
     } catch (\Throwable $e){
         $notification->update([
             'status' => 'failed',
