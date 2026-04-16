@@ -16,12 +16,8 @@ class ClientRequest extends Model
         'user_id',
         'age',
         'gender',
-        'job_activity',
         'height',
         'weight',
-
-        'activity_level',
-        'training_days',
 
         'eating_habits',
         'has_allergies',
@@ -34,9 +30,6 @@ class ClientRequest extends Model
         'goal',
         'additional_observations',
         'orientative_service_acknowledged',
-
-        'food_preference',
-        'notes',
 
         'status',
         'rejection_reason',

@@ -21,7 +21,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('settings/password', Password::class)->name('settings.password');
     Route::get('settings/appearance', Appearance::class)->name('settings.appearance');
 
-    Route::get('/solicitud/nueva', RequestWizard::class)
+    Route::get('/request/new', RequestWizard::class)
         ->name('client.requests.create');
 });
 

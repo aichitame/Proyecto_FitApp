@@ -14,16 +14,28 @@ return new class extends Migration
         Schema::create('client_requests', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+
             $table->integer('age');
             $table->string('gender');
             $table->decimal('height', 5, 2);
             $table->decimal('weight', 5, 2);
+
+            $table->text('eating_habits');
+            $table->boolean('has_allergies')->default(false);
+            $table->text('allergies_description');
+
+            $table->string('physical_activity_frequency');
+            $table->text('physical_activity_type');
+            $table->text('physical_limitations')->nullable();
+
             $table->string('goal');
-            $table->string('activity_level');
-            $table->integer('training_days');
-            $table->string('food_preference');
-            $table->text('notes')->nullable();
+            $table->text('additional_observations')->nullable();
+            $table->boolean('orientative_service_acknowledged')->default(false);
+
             $table->string('status')->default('pending');
+            $table->text('rejection_reason')->nullable();
+            $table->timestamp('status_changed_at')->nullable();
+            
             $table->timestamps();
         });
     }
