@@ -23,6 +23,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/request/new', RequestWizard::class)
         ->name('client.requests.create');
+    
+    Route::view('request/sent', 'client.request-sent')
+    ->name('client.requests.sent');
 });
 
 require __DIR__.'/auth.php';

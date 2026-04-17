@@ -40,11 +40,13 @@ class RequestWizard extends Component {
         }
 
         if($this->step === 3){
+            $this->normalizeTrainingType();
             $this->validate($this->stepThreeRules());
 
             $this->resetValidation('form.other_training_type');
 
-        if (in_array('other', $this->form['training_type'], true) && blank($this->form['other_training_type'])){
+        if (in_array('other', $this->form['training_type'], true)
+            && blank($this->form['other_training_type'])){
             $this->addError('form.other_training_type', 'Debes indicar cuál es la actividad física.');
             return;
             }
@@ -61,13 +63,34 @@ class RequestWizard extends Component {
         }
     }
 
+    public function mount(): void {
+        $hasActiveRequest = ClientRequest::where('user_id', Auth::id())
+        ->active()
+        ->exists();
+
+        if ($hasActiveRequest){
+            $this->redirectRoute('client.requests.sent');
+        }
+    }
+
     public function render() {
         return view('livewire.client.request-wizard');
     }
 
     public function submit(): void {
         $this->validate($this->stepFourRules());
-        
+
+        $hasActiveRequest = ClientRequest::where('user_id', Auth::id())
+        ->active()
+        ->exists();
+
+        if ($hasActiveRequest){
+            $this->addError('form', 'Ya tienes una solicitud activa.');
+            return;
+        }
+
+        $this->normalizeTrainingType();
+    
         ClientRequest::create([
             'user_id' => Auth::id(),
             'age' => $this->form['age'],
@@ -80,7 +103,7 @@ class RequestWizard extends Component {
             'allergies_description' => $this->form['allergies_description'],
 
             'physical_activity_frequency' => $this->form['training_frequency'],
-            'physical_activity_type' => json_encode($this->form['training_type']),
+            'physical_activity_type' => $this->form['training_type'],
             'physical_limitations' => $this->form['physical_limitations'],
 
             'goal' => $this->form['main_goal'],
@@ -90,8 +113,7 @@ class RequestWizard extends Component {
             'status' => 'pending',
         ]);
 
-        session()->flash('success', 'Solicitud enviada correctamente.');
-        $this->redirectRoute('client.requests.create');
+        $this->redirectRoute('client.requests.sent');
     }
 
     protected function stepOneRules(): array {
@@ -131,5 +153,11 @@ class RequestWizard extends Component {
             'form.additional_notes' => ['nullable', 'string'],
             'form.accepts_informative_notice' => ['accepted'],
         ];
+    }
+
+    private function normalizeTrainingType(): void {
+        $this->form['training_type'] = array_values(
+            array_filter($this->form['training_type'], fn ($value) => $value !== 'on')
+        );
     }
 }

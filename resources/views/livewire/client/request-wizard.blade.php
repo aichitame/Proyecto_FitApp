@@ -5,6 +5,10 @@
         <p>{{ session('success') }}</p>
     @endif
 
+    @error('form')
+        <p>{{ $message }}</p>
+    @enderror
+
     <p>Paso actual: {{ $step }} de 4</p>
 
     @if ($step === 1)

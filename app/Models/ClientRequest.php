@@ -40,6 +40,7 @@ class ClientRequest extends Model
         'has_allergies' => 'boolean',
         'orientative_service_acknowledged' => 'boolean',
         'status_changed_at' => 'datetime',
+        'physical_activity_type' => 'array',
     ];
 
     /**
@@ -62,5 +63,9 @@ class ClientRequest extends Model
 
     public function notifications(): HasMany{
         return $this->hasMany(RequestNotification::class, 'client_request_id');
+    }
+
+    public function scopeActive($query){
+        return $query->whereIn('status', ['pending', 'in_review']);
     }
 }
