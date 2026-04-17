@@ -160,4 +160,32 @@ class RequestWizard extends Component {
             array_filter($this->form['training_type'], fn ($value) => $value !== 'on')
         );
     }
+
+    protected function messages(): array {
+        return [
+
+        'form.age.required' => 'Debes indicar tu edad.',
+        'form.age.integer' => 'La edad debe ser un número entero.',
+        'form.age.min' => 'La edad debe ser mayor que 0.',
+
+        'form.gender.required' => 'Debes indicar tu sexo.',
+        'form.height.required' => 'Debes indicar tu altura.',
+        'form.height.numeric' => 'La altura debe ser un número.',
+        'form.weight.required' => 'Debes indicar tu peso.',
+        'form.weight.numeric' => 'El peso debe ser un número.',
+
+        'form.eating_habits.required' => 'Debes describir tus hábitos alimenticios.',
+        'form.allergies_description.required_if' => 'Debes indicar cuáles son tus alergias o intolerancias.',
+
+        'form.training_frequency.required' => 'Debes indicar la frecuencia de tu actividad física.',
+        'form.training_type.required' => 'Debes seleccionar al menos un tipo de actividad física.',
+        'form.training_type.min' => 'Debes seleccionar al menos un tipo de actividad física.',
+
+        'form.main_goal.required' => 'Debes indicar tu objetivo principal.',
+        'form.accepts_informative_notice.accepted' => 'Debes aceptar que este servicio es orientativo y no constituye un asesoramiento médico.',
+
+        ];
+    }
+
+
 }
