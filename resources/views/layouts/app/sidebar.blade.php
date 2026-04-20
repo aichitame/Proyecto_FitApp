@@ -12,22 +12,28 @@
             </a>
 
             <flux:navlist variant="outline">
-                <flux:navlist.group :heading="__('Platform')" class="grid">
-                    <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
-                </flux:navlist.group>
-            </flux:navlist>
+                <flux:navlist.group :heading="__('Navegación')" class="grid">
+                    <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
+                        {{ __('Inicio') }}
+                    </flux:navlist.item>
 
-            <flux:spacer />
-
-            <flux:navlist variant="outline">
-                <flux:navlist.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit" target="_blank">
-                {{ __('Repository') }}
+            <flux:navlist item icon="document-plus" :href="route('client.requests.create')" :current="request()->routeIs('client.requests.create')" wire:navigate">
+                {{ __('Nueva Solicitud') }}
                 </flux:navlist.item>
+            </flux:navlist.group>
 
-                <flux:navlist.item icon="book-open-text" href="https://laravel.com/docs/starter-kits#livewire" target="_blank">
-                {{ __('Documentation') }}
+
+            @if(auth()->user()->rol === 'admin')
+                <flux:navlist.group :heading=""__('Administración')" class="grid">
+                    <flux:navlist.item icon="shield-check" :href="url('/admin')" target="_blank">
+                {{ __('Panel Admin') }}
                 </flux:navlist.item>
-            </flux:navlist>
+            </flux:navlist.group>
+            @endif
+        </flux:navlist>
+        <flux:spacer />
+
+        <flux:dropdown class="hidden lg:block" position="bottom" align="start"></flux:dropdown>
 
             <!-- Desktop User Menu -->
             <flux:dropdown class="hidden lg:block" position="bottom" align="start">

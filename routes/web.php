@@ -10,6 +10,10 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Route::view('/vision', 'vision')->name('vision');
+Route::view('/como-funciona', 'como-funciona')->name('como-funciona');
+Route::view('/contacto', 'contacto')->name('contacto');
+
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
