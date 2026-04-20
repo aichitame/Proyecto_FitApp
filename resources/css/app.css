@@ -2,6 +2,7 @@
 @import '../../vendor/livewire/flux/dist/flux.css';
 @import './request-wizard.css';
 @import './landing.css';
+@import './auth.css';
 
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';

@@ -24,13 +24,13 @@
         </div>
     </section>
 
-        <section class="landing-features">
-            <div class="landing-feature-card">
-                <h2>Para clientes</h2>
-                <p>
-                    Comparte tu solicitud paso a paso y comparte tu contexto físico, alimenticio y tu objetivo principal.
-                </p>
-            </div>
+<section class="landing-features">
+        <div class="landing-feature-card">
+            <h2>Para clientes</h2>
+            <p>
+                Comparte tu solicitud paso a paso y comparte tu contexto físico, alimenticio y tu objetivo principal.
+            </p>
+        </div>
 
         <div class="landing-feature-card">
             <h2>Seguimiento claro</h2>
@@ -46,6 +46,4 @@
             </p>
         </div>
     </section>
-</main>
-</body>
-</html>
+@endsection
