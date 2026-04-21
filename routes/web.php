@@ -14,12 +14,11 @@ Route::get('/test-send-plan-mail', function () {
     $clientRequest = ClientRequest::with('user')->first();
     $plan = Plan::first();
 
-    dd([
-        'clientRequest_exists' => (bool) $clientRequest,
-        'user_exists' => (bool) $clientRequest?->user,
-        'user_email' => $clientRequest?->user?->email,
-        'plan_exists' => (bool) $plan,
-    ]);
+    Mail::to($clientRequest->user->email)->send(
+        new PlanAvailableMail($clientRequest, $plan)
+    );
+
+    dd('correo enviado correctamente');
 });
 
 Route::get('/', function () {
