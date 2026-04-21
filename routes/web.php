@@ -1,10 +1,26 @@
 <?php
 
+use App\Models\Plan;
+use App\Models\ClientRequest;
+use App\Mail\PlanAvailableMail;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
 use App\Livewire\Client\RequestWizard;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
+
+Route::get('/test-send-plan-mail', function () {
+    $clientRequest = ClientRequest::with('user')->first();
+    $plan = Plan::first();
+
+    dd([
+        'clientRequest_exists' => (bool) $clientRequest,
+        'user_exists' => (bool) $clientRequest?->user,
+        'user_email' => $clientRequest?->user?->email,
+        'plan_exists' => (bool) $plan,
+    ]);
+});
 
 Route::get('/', function () {
     return view('welcome');

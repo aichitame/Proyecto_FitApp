@@ -3,6 +3,7 @@
 @import './request-wizard.css';
 @import './landing.css';
 @import './auth.css';
+@import './plan-available-mail.css'
 
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';

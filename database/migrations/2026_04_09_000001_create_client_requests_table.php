@@ -22,7 +22,7 @@ return new class extends Migration
 
             $table->text('eating_habits');
             $table->boolean('has_allergies')->default(false);
-            $table->text('allergies_description');
+            $table->text('allergies_description')->nullable();
 
             $table->string('physical_activity_frequency');
             $table->text('physical_activity_type');
