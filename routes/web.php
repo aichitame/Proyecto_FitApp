@@ -10,6 +10,8 @@ use App\Livewire\Client\RequestWizard;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
 
+Route::redirect('/acceso-admin', '/admin/login')->name('admin.login');
+
 Route::get('/test-send-plan-mail', function () {
     $clientRequest = ClientRequest::with('user')->first();
     $plan = Plan::first();
@@ -24,6 +26,8 @@ Route::get('/test-send-plan-mail', function () {
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
+
+Route::redirect('/acceso-admin', '/admin')->name('admin.login');
 
 Route::view('/vision', 'vision')->name('vision');
 Route::view('/como-funciona', 'como-funciona')->name('como-funciona');

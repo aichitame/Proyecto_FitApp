@@ -11,7 +11,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class PlanAvailableMail extends Mailable implements ShouldQueue
+class PlanAvailableMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -21,22 +21,12 @@ class PlanAvailableMail extends Mailable implements ShouldQueue
     ){
     }
 
-    public function envelope(): Envelope
-    {
-        return new Envelope(
-            subject: 'Tu plan orientativo ya está disponible',
-        );
-    }
-
-    public function content(): Content
-    {
-        return new Content(
-            view: 'emails.plan-available',
-        );
-    }
-
-    public function attachments(): array
-    {
-        return [];
+    public function build(): static {
+        return $this
+        ->subject('Tu plan orientativo ya está disponible')
+        ->view('emails.plan-available', [
+            'clientRequest' => $this->clientRequest,
+            'plan' => $this->plan,
+        ]);
     }
 }

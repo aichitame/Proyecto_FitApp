@@ -21,8 +21,16 @@
                 <a href="{{ route('como-funciona') }}" class="landing-nav-link">Cómo funciona</a>
                 <a href="{{ route('contacto') }}" class="landing-nav-link">Contacto</a>
 
-                <a href="{{ route('login') }}" class="landing-button landing-button-secondary">Acceso admin</a>
+                @guest
+                <a href="{{ route('admin.login') }}" class="landing-button landing-button-secondary">Acceso admin</a>
                 <a href="{{ route('login') }}" class="landing-button landing-button-primary">Acceso cliente</a>
+                @endguest
+
+                @auth
+                    <a href="{{ route('dashboard') }}" class="landing-button landing-button-primary">
+                        Ir a mi panel
+                    </a>
+                @endauth
             </nav>
         </div>
     </header>

@@ -3,10 +3,13 @@
 namespace App\Filament\Admin\Resources\Plans\Pages;
 
 use App\Filament\Admin\Resources\Plans\PlanResource;
+use App\Mail\PlanAvailableMail;
 use App\Models\Plan;
+use App\Models\RequestNotification;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Support\Facades\Auth;
-use App\Models\RequestNotification;
+use Illuminate\Support\Facades\Mail;
+
 
 class CreatePlan extends CreateRecord
 {
@@ -44,19 +47,35 @@ class CreatePlan extends CreateRecord
                 'status_changed_at' => now(),
             ]);
 
-        RequestNotification::create([
-            'client_request_id' => $clientRequest->id,
-            'type' => 'plan_available',
-            'status' => 'pending',
-            'attempts' => 0,
-            'sent_by_user_id' => Auth::id(),
-        ]);
-    }   else{
+            try {
+                Mail::to($clientRequest->user->email)
+                ->send(new PlanAvailableMail($clientRequest, $plan));
+
+                RequestNotification::create([
+                    'client_request_id' => $clientRequest->id,
+                    'type' => 'plan_available',
+                    'status' => 'sent',
+                    'notified_at' => now(),
+                    'attempts' => 1,
+                    'error_message' => null,
+                    'sent_by_user_id' => Auth::id(),
+                ]);
+            } catch (\Throwable $e){
+                RequestNotification::create([
+                    'client_request_id' => $clientRequest->id,
+                    'type' => 'plan_available',
+                    'status' => 'failed',
+                    'notified_at' => null,
+                    'attempts' => 1,
+                    'error_message' => $e->getMessage(),
+                    'sent_by_user_id' => Auth::id(),
+                ]);
+            }
+        } else {
             $clientRequest->update([
                 'status' => 'in_review',
                 'status_changed_at' => now(),
             ]);
         }
-
     }
 }

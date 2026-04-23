@@ -30,45 +30,71 @@ class PlanResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema
-        ->components([
-            Section::make('Asignación y control')
-            ->schema([
-                Select::make('client_request_id')
-                ->relationship('clientRequest', 'id')
-                ->label('Solicitud')
-                ->getOptionLabelFromRecordUsing(fn ($record) =>
-                'Solicitud #'.$record->id.' - '.($record->user?->name ?? 'Sin cliente').' - '.$record->status)
-                ->preload()
-                ->required(),
+            ->components([
+                Section::make('Asignación y control')
+                    ->description('Vincula el plan a una solicitud y define su estado de publicación.')
+                    ->schema([
+                        Select::make('client_request_id')
+                            ->relationship('clientRequest', 'id')
+                            ->label('Solicitud')
+                            ->getOptionLabelFromRecordUsing(
+                                fn ($record) => 'Solicitud #'.$record->id
+                                . ' - '.($record->user?->name ?? 'Sin cliente')
+                                . ' - '.match ($record->status) {
+                                    'pending' => 'Pendiente',
+                                    'in_review' => 'En revisión',
+                                    'completed' => 'Completada',
+                                    'rejected' => 'Rechazada',
+                                    default => $record->status,
+                                }
+                            )
+                            ->searchable()
+                            ->preload()
+                            ->required(),
 
-                TextInput::make('name')
-                ->label('Nombre del plan')
-                ->placeholder('Ej: plan orientativo v1')
-                ->required()
-                ->maxLength(255),
+                        TextInput::make('name')
+                            ->label('Nombre del plan')
+                            ->placeholder('Ej: Plan orientativo mayo 2026')
+                            ->required()
+                            ->maxLength(255),
 
-                Select::make('status')
-                ->label('Estado del plan')
-                ->options([
-                    'draft' => 'Borrador',
-                    'published' => 'Publicado'
-                ])
-                ->default('draft')
-                ->required()
-                ->native(false),
-            ])
-            ->columns(2),
+                        Select::make('status')
+                        ->label('Estado del plan')
+                        ->options([
+                            'draft' => 'Borrador',
+                            'published' => 'Publicado',
+                        ])
+                        ->default('draft')
+                        ->required()
+                        ->native(false),
+                    ])
+                    ->columns([
+                        'md' => 2,
+                        'xl' => 3,
+                    ])
+                    ->columnSpanFull(),
 
-        Section::make('Contenido del plan')
-        ->schema([
-            RichEditor::make('description')
-            ->label('Contenido del plan orientativo')
-            ->placeholder('Escribe aquí el plan detallado...')
-            ->required()
-            ->columnSpanFull(),
-        ]),
-
-    ]);
+                Section::make('Contenido del plan')
+                    ->description('Redacta aquí el contenido que verá el cliente cuando el plan sea publicado. Puedes incluir recomendaciones de alimentación, actividad física, observaciones y pautas generales.')
+                    ->schema([
+                        RichEditor::make('description')
+                            ->label('Contenido del plan orientativo')
+                            ->placeholder('Empieza a escribir el plan...')
+                            ->required()
+                            ->toolbarButtons([
+                                ['bold', 'italic', 'underline', 'strike'],
+                                ['h2', 'h3'],
+                                ['bulletList', 'orderedList'],
+                                ['blockquote', 'redo', 'undo'],
+                                ['link'],
+                            ])
+                            ->columnSpanFull()
+                            ->extraInputAttributes([
+                                'style' => 'min-height: 420px;',
+                            ]),
+                    ])
+                    ->columnSpanFull(),
+            ]);
 }
 
     public static function table(Table $table): Table

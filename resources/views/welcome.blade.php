@@ -14,13 +14,7 @@
         <div class="landing-actions">
             @guest
                 <a href="{{ route('register') }}" class="landing-button landing-button-primary">Crear cuenta</a>
-                <a href="{{ route('login') }}" class="landing-button landing-button-secondary">Iniciar sesión</a>
-            @endguest
-
-            @auth
-                <a href="{{ route('dashboard') }}" class="landing-button landing-button-primary">Ir a mi panel</a>
-            @endauth
-            </div>
+                @endguest
         </div>
     </section>
 
