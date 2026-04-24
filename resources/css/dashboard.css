@@ -15,6 +15,13 @@
     color: #6b7280;
 }
 
+.client-panel-topbar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    gap: 2rem;
+}
+
 .client-panel-title {
     margin: 0 0 1rem;
     font-size: 3rem;
@@ -23,17 +30,127 @@
 }
 
 .client-panel-subtitle {
-    max-width: 760px;
     margin: 0;
     font-size: 1.2rem;
     line-height: 1.7;
     color: #475569;
 }
 
+.client-panel-subtitle-full {
+    max-width: none;
+}
+
+.client-panel-header-actions {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.client-panel-header-actions form {
+    margin: 0;
+}
+
+.client-panel .landing-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.client-panel-header-actions .landing-button {
+    min-width: 180px;
+}
+
+.client-panel-status-card {
+    margin-bottom: 1.75rem;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 1.5rem;
+    padding: 1.75rem;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+}
+
+.client-panel-status-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.client-panel-status-eyebrow {
+    margin: 0 0 0.35rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #6b7280;
+}
+
+.client-panel-status-title {
+    margin: 0;
+    font-size: 1.8rem;
+    color: #0f172a;
+}
+
+.client-panel-status-body p {
+    margin: 0 0 1rem;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #475569;
+}
+
+.client-panel-status-note {
+    margin-top: 1rem;
+    padding: 1rem 1.1rem;
+    background: #fff7f7;
+    border: 1px solid #fecaca;
+    border-radius: 1rem;
+    color: #7f1d1d;
+}
+
+.client-status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    padding: 0.5rem 0.9rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.client-status-badge-pending {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.client-status-badge-in_review {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.client-status-badge-completed {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.client-status-badge-rejected {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.client-status-badge-empty {
+    background: #f3f4f6;
+    color: #4b5563;
+}
+
 .client-panel-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.5rem;
+}
+
+.client-panel-grid-simple {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .client-panel-card {
@@ -57,23 +174,70 @@
     color: #475569;
 }
 
-.client-panel-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
+.client-panel-card form {
+    margin: 0;
 }
 
-.client-panel-card-danger {
-    border-color: #fecaca;
-    background: #fffaf9;
+.client-panel-card .landing-button {
+    min-width: 170px;
 }
 
 @media (max-width: 900px) {
-    .client-panel-grid {
+    .client-panel-topbar {
         grid-template-columns: 1fr;
     }
 
     .client-panel-title {
         font-size: 2.4rem;
     }
+
+    .client-panel-header-actions {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    .client-panel-grid-simple {
+        grid-template-columns: 1fr;
+    }
+
+    .client-panel-status-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+.client-plan-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.client-plan-meta p {
+    margin: 0;
+    font-size: 0.98rem;
+    color: #475569;
+}
+
+.client-plan-content-card h2 {
+    margin-bottom: 1rem;
+}
+
+.client-plan-content {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #334155;
+}
+
+.client-plan-content p {
+    margin: 0 0 1rem;
+}
+
+.client-plan-content ul,
+.client-plan-content ol {
+    margin: 0 0 1rem 1.5rem;
+}
+
+.client-plan-content strong {
+    color: #0f172a;
 }

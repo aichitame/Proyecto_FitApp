@@ -27,9 +27,11 @@
                 @endguest
 
                 @auth
+                @if(! request()->routeIs('dashboard'))
                     <a href="{{ route('dashboard') }}" class="landing-button landing-button-primary">
                         Ir a mi panel
                     </a>
+                    @endif
                 @endauth
             </nav>
         </div>
