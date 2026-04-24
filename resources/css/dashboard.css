@@ -241,3 +241,166 @@
 .client-plan-content strong {
     color: #0f172a;
 }
+
+.client-panel-history {
+    margin-top: 1.75rem;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 1.5rem;
+    padding: 1.75rem;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+}
+
+.client-panel-history-header {
+    margin-bottom: 1.25rem;
+}
+
+.client-panel-history-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.client-panel-history-item {
+    border: 1px solid #e5e7eb;
+    border-radius: 1rem;
+    padding: 1.25rem;
+    background: #fafafa;
+}
+
+.client-panel-history-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.client-panel-history-id {
+    margin: 0 0 0.35rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.client-panel-history-meta {
+    margin: 0;
+    font-size: 0.92rem;
+    color: #64748b;
+}
+
+.client-panel-history-content {
+    display: grid;
+    gap: 0.45rem;
+}
+
+.client-panel-history-content p {
+    margin: 0;
+    font-size: 0.98rem;
+    line-height: 1.6;
+    color: #475569;
+}
+
+.client-panel-history-content strong {
+    color: #0f172a;
+}
+
+.client-panel-history-empty {
+    color: #64748b;
+    font-style: italic;
+}
+
+@media (max-width: 900px) {
+    .client-panel-history-top {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+.client-panel-history {
+    margin-top: 2rem;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 1.5rem;
+    padding: 1.75rem;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+}
+
+.client-panel-history-header {
+    margin-bottom: 1.5rem;
+}
+
+.client-panel-history-header .client-panel-status-title {
+    margin-bottom: 0.5rem;
+}
+
+.client-panel-history-intro {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #64748b;
+}
+
+.client-panel-history-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.client-panel-history-item {
+    background: #fafafa;
+    border: 1px solid #e5e7eb;
+    border-radius: 1rem;
+    padding: 1.25rem;
+}
+
+.client-panel-history-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.client-panel-history-id {
+    margin: 0 0 0.35rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.client-panel-history-meta {
+    margin: 0;
+    font-size: 0.92rem;
+    color: #64748b;
+}
+
+.client-panel-history-content {
+    display: grid;
+    gap: 0.45rem;
+}
+
+.client-panel-history-content p {
+    margin: 0;
+    font-size: 0.98rem;
+    line-height: 1.6;
+    color: #475569;
+}
+
+.client-panel-history-content strong {
+    color: #0f172a;
+}
+
+.client-panel-history-actions {
+    margin-top: 1rem;
+}
+
+.client-panel-history-empty {
+    color: #64748b;
+    font-style: italic;
+}
+
+@media (max-width: 900px) {
+    .client-panel-history-top {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

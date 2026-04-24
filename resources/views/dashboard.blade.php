@@ -84,7 +84,7 @@
                     </p>
                 @elseif ($clientRequest->status === 'completed')
                     <p>
-                        Tu solicitud ya ha sido completada y tu plan orientativo debería estar disponible en tu área privada.
+                        Tu solicitud ya ha sido completada y tu plan orientativo está disponible en tu área privada.
                     </p>
 
                     <a href="{{ route('client.plan.show') }}" class="landing-button landing-button-primary">
@@ -123,5 +123,56 @@
                 </a>
             </article>
         </section>
+
+        @if ($clientRequests->count() > 1)
+            <section class="client-panel-history">
+                <div class="client-panel-history-header">
+                    <p class="client-panel-status-eyebrow">Histórico</p>
+                    <h2 class="client-panel-status-title">Solicitudes anteriores</h2>
+                </div>
+
+                <div class="client-panel-history-list">
+                    @foreach ($clientRequests->skip(1) as $request)
+                        <article class="client-panel-history-item">
+                            <div class="client-panel-history-top">
+                                <div>
+                                <p class="client-panel-history-id">Solicitud #{{ $request->id }}</p>
+                                <p class="client-panel-history-meta">
+                                    {{ $request->created_at?->format('d/m/Y H:i') }}
+                                </p>
+                            </div>
+
+                                <span class="client-status-badge client-status-badge-{{ $request->status }}">
+                                    @switch($request->status)
+                                        @case('pending')
+                                            Pendiente
+                                            @break
+                                        @case('in_review')
+                                            En revisión
+                                            @break
+                                        @case('completed')
+                                            Completada
+                                            @break
+                                        @case('rejected')
+                                            Rechazada
+                                            @break
+                                        @default
+                                            {{ $request->status }}
+                                    @endswitch
+                                </span>
+                            </div>
+                            
+                            <div class="client-panel-history-content">
+                                <p><strong>Objetivo:</strong> {{ $request->goal }}</p>
+
+                                @if ($request->status === 'rejected' && $request->rejection_reason)
+                                    <p><strong>Motivo de rechazo:</strong> {{ $request->rejection_reason }}</p>
+                                @endif
+                            </div>
+                        </article>
+                    @endforeach
+                </div>
+            </section>
+        @endif
     </section>
 @endsection

@@ -38,13 +38,16 @@ Route::get('dashboard', function () {
         return redirect ('/admin');
     }
 
-    $clientRequest = ClientRequest::query()
+    $clientRequests = ClientRequest::query()
     ->where('user_id', Auth::id())
     ->latest()
-    ->first();
+    ->get();
+
+    $clientRequest = $clientRequests->first();
 
     return view ('dashboard', [
         'clientRequest' => $clientRequest,
+        'clientRequests' => $clientRequests,
     ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
