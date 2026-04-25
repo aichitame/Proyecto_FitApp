@@ -66,6 +66,15 @@
             </div>
 
             <div class="client-panel-status-body">
+                @if ($clientRequest)
+                    <div class="client-panel-status-meta">
+                        <p><strong>Fecha de envío:</strong>
+                            {{ $clientRequest->created_at?->format('d/m/Y H:i') }}</p>
+                        <p><strong>Último cambio de estado:</strong>
+                            {{ $clientRequest->status_changed_at?->format('d/m/Y H:i') ?? '-' }}</p>
+                    </div>
+                @endif
+
                 @if (! $clientRequest)
                     <p>
                         Todavía no has enviado ninguna solicitud. Cuando quieras, puedes comenzar tu valoración inicial desde aquí.
@@ -87,7 +96,8 @@
                         Tu solicitud ya ha sido completada y tu plan orientativo está disponible en tu área privada.
                     </p>
 
-                    <a href="{{ route('client.plan.show') }}" class="landing-button landing-button-primary">
+                    <a href="{{ route('client.plan.show', ['requestId' => $clientRequest->id]) }}"
+                       class="landing-button landing-button-primary">
                         Ver mi plan
                     </a>
                 @elseif ($clientRequest->status === 'rejected')
@@ -129,18 +139,25 @@
                 <div class="client-panel-history-header">
                     <p class="client-panel-status-eyebrow">Histórico</p>
                     <h2 class="client-panel-status-title">Solicitudes anteriores</h2>
+                    <p class="client-panel-history-intro">
+                        Consulta tus solicitudes anteriores y el último plan publicado asociado a cada una.
+                    </p>
                 </div>
 
                 <div class="client-panel-history-list">
                     @foreach ($clientRequests->skip(1) as $request)
+                        @php
+                            $publishedPlan = $request->plans->first();
+                        @endphp
+
                         <article class="client-panel-history-item">
                             <div class="client-panel-history-top">
                                 <div>
-                                <p class="client-panel-history-id">Solicitud #{{ $request->id }}</p>
-                                <p class="client-panel-history-meta">
-                                    {{ $request->created_at?->format('d/m/Y H:i') }}
-                                </p>
-                            </div>
+                                    <p class="client-panel-history-id">Solicitud #{{ $request->id }}</p>
+                                    <p class="client-panel-history-meta">
+                                        Creada el {{ $request->created_at?->format('d/m/Y H:i') }}
+                                    </p>
+                                </div>
 
                                 <span class="client-status-badge client-status-badge-{{ $request->status }}">
                                     @switch($request->status)
@@ -161,9 +178,33 @@
                                     @endswitch
                                 </span>
                             </div>
-                            
+
                             <div class="client-panel-history-content">
                                 <p><strong>Objetivo:</strong> {{ $request->goal }}</p>
+
+                                <div class="client-panel-history-actions">
+                                    <a href="{{ route('client.request.show', ['requestId' => $request->id]) }}"
+                                       class="landing-button landing-button-secondary">
+                                        Ver solicitud
+                                    </a>
+
+                                    @if ($publishedPlan)
+                                        <a href="{{ route('client.plan.show', ['requestId' => $request->id]) }}"
+                                           class="landing-button landing-button-primary">
+                                            Ver plan
+                                        </a>
+                                    @endif
+                                </div>
+
+                                @if ($publishedPlan)
+                                    <p><strong>Plan:</strong> {{ $publishedPlan->name }}</p>
+                                    <p><strong>Versión:</strong> {{ $publishedPlan->version }}</p>
+                                    <p><strong>Publicado el:</strong> {{ optional($publishedPlan->published_at)->format('d/m/Y H:i') }}</p>
+                                @elseif ($request->status === 'completed')
+                                    <p class="client-panel-history-empty">
+                                        Esta solicitud está completada, pero no se ha encontrado un plan publicado.
+                                    </p>
+                                @endif
 
                                 @if ($request->status === 'rejected' && $request->rejection_reason)
                                     <p><strong>Motivo de rechazo:</strong> {{ $request->rejection_reason }}</p>
