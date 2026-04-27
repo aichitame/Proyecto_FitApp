@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @include('partials.head')
     <title>{{ $title ?? 'FitApp' }}</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -10,12 +9,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
 
     @vite([
-    'resources/css/app.css',
-    'resources/css/dashboard.css',
-    'resources/css/request-wizard.css',
-    'resources/js/app.js',
-])
-
+        'resources/css/app.css',
+        'resources/css/dashboard.css',
+        'resources/css/request-wizard.css',
+        'resources/js/app.js',
+    ])
 </head>
 <body>
     <header class="landing-header">
@@ -28,15 +26,15 @@
                 <a href="{{ route('contacto') }}" class="landing-nav-link">Contacto</a>
 
                 @guest
-                <a href="{{ route('admin.login') }}" class="landing-button landing-button-secondary">Acceso admin</a>
-                <a href="{{ route('login') }}" class="landing-button landing-button-primary">Acceso cliente</a>
+                    <a href="{{ route('admin.login') }}" class="landing-button landing-button-secondary">Acceso admin</a>
+                    <a href="{{ route('login') }}" class="landing-button landing-button-primary">Acceso cliente</a>
                 @endguest
 
                 @auth
-                @if(! request()->routeIs('dashboard'))
-                    <a href="{{ route('dashboard') }}" class="landing-button landing-button-primary">
-                        Ir a mi panel
-                    </a>
+                    @if (! request()->routeIs('dashboard'))
+                        <a href="{{ route('dashboard') }}" class="landing-button landing-button-primary">
+                            Ir a mi panel
+                        </a>
                     @endif
                 @endauth
             </nav>
@@ -46,5 +44,7 @@
     <main class="landing-page">
         @yield('content')
     </main>
+
+    @fluxScripts
 </body>
 </html>

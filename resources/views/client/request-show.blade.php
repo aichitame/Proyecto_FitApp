@@ -1,5 +1,3 @@
-@vite('resources/css/dashboard.css')
-
 @extends('layouts.public')
 
 @php
@@ -21,10 +19,10 @@
         'running' => 'Running',
         'gym' => 'Gimnasio',
         'cycling' => 'Ciclismo',
-        'yoga_pilates' => 'Yoga/Pilates',
+        'yoga_pilates' => 'Yoga / Pilates',
         'swimming' => 'Natación',
         'team_sports' => 'Deportes de equipo',
-        'other' => 'Other',
+        'other' => 'Otro',
     ];
 
     $genderText = $genderLabels[$clientRequest->gender] ?? $clientRequest->gender;
@@ -121,6 +119,7 @@
             <div class="client-panel-history-list">
                 <article class="client-panel-history-item">
                     <div class="client-panel-history-content">
+                        <p class="client-request-block-title">Datos básicos</p>
                         <p><strong>Edad:</strong> {{ $clientRequest->age }}</p>
                         <p><strong>Sexo:</strong> {{ $genderText }}</p>
                         <p><strong>Altura:</strong> {{ rtrim(rtrim((string) $clientRequest->height, '0'), '.') }} cm</p>
@@ -130,6 +129,7 @@
 
                 <article class="client-panel-history-item">
                     <div class="client-panel-history-content">
+                        <p class="client-request-block-title">Alimentación</p>
                         <p><strong>Hábitos alimenticios:</strong> {{ $clientRequest->eating_habits }}</p>
                         <p><strong>Alergias o intolerancias:</strong>
                             {{ $clientRequest->has_allergies ? 'Sí' : 'No' }}
@@ -143,10 +143,11 @@
 
                 <article class="client-panel-history-item">
                     <div class="client-panel-history-content">
+                        <p class="client-request-block-title">Actividad física</p>
                         <p><strong>Frecuencia de actividad física:</strong>
                             {{ $activityFrequencyText }}</p>
                         <p><strong>Tipo de actividad física:</strong>
-                            {{ $activityTypesText ?: '-'}}</p>
+                            {{ $activityTypesText ?: '—' }}</p>
 
                         @if ($clientRequest->physical_limitations)
                             <p><strong>Limitaciones físicas:</strong>
@@ -157,6 +158,7 @@
 
                 <article class="client-panel-history-item">
                     <div class="client-panel-history-content">
+                        <p class="client-request-block-title">Objetivo y observaciones</p>
                         <p><strong>Objetivo:</strong> {{ $clientRequest->goal }}</p>
 
                         @if ($clientRequest->additional_observations)

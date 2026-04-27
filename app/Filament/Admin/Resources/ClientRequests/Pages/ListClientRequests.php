@@ -2,10 +2,8 @@
 
 namespace App\Filament\Admin\Resources\ClientRequests\Pages;
 
-use Illuminate\Database\Eloquent\Builder;
-use App\Models\ClientRequest;
+
 use App\Filament\Admin\Resources\ClientRequests\ClientRequestResource;
-use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
 class ListClientRequests extends ListRecords
@@ -14,8 +12,6 @@ class ListClientRequests extends ListRecords
 
     protected function getHeaderActions(): array
     {
-        return [
-            CreateAction::make(),
-        ];
+        return [];
     }
 }

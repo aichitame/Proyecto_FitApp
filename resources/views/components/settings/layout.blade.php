@@ -1,20 +1,46 @@
-<div class="flex items-start max-md:flex-col">
-    <div class="me-10 w-full pb-4 md:w-[220px]">
-        <flux:navlist>
-            <flux:navlist.item :href="route('settings.profile')" wire:navigate>{{ __('Profile') }}</flux:navlist.item>
-            <flux:navlist.item :href="route('settings.password')" wire:navigate>{{ __('Password') }}</flux:navlist.item>
-            <flux:navlist.item :href="route('settings.appearance')" wire:navigate>{{ __('Appearance') }}</flux:navlist.item>
-        </flux:navlist>
-    </div>
+<section class="settings-page">
+    <div class="settings-shell">
+        <div class="settings-header">
+            <p class="settings-eyebrow">Área privada de cliente</p>
+            <h1 class="settings-title">Configuración</h1>
+            <p class="settings-intro">Gestiona tu perfil y la configuración de tu cuenta.</p>
+        </div>
 
-    <flux:separator class="md:hidden" />
+        <div class="settings-card">
+            <div class="settings-grid">
+                <aside class="settings-sidebar">
+                    <nav class="settings-nav">
+                        <a
+                            href="{{ route('settings.profile') }}"
+                            wire:navigate
+                            class="settings-nav-link {{ request()->routeIs('settings.profile') ? 'settings-nav-link-active' : '' }}"
+                        > Perfil </a>
 
-    <div class="flex-1 self-stretch max-md:pt-6">
-        <flux:heading>{{ $heading ?? '' }}</flux:heading>
-        <flux:subheading>{{ $subheading ?? '' }}</flux:subheading>
+                        <a
+                            href="{{ route('settings.password') }}"
+                            wire:navigate
+                            class="settings-nav-link {{ request()->routeIs('settings.password') ? 'settings-nav-link-active' : '' }}"
+                        > Contraseña </a>
 
-        <div class="mt-5 w-full max-w-lg">
-            {{ $slot }}
+                        <a
+                            href="{{ route('settings.appearance') }}"
+                            wire:navigate
+                            class="settings-nav-link {{ request()->routeIs('settings.appearance') ? 'settings-nav-link-active' : '' }}"
+                        > Apariencia </a>
+                    </nav>
+                </aside>
+
+                <div class="settings-content">
+                    <div class="settings-section-header">
+                        <h2 class="settings-section-title">{{ $heading ?? '' }}</h2>
+                        <p class="settings-section-subtitle">{{ $subheading ?? '' }}</p>
+                    </div>
+
+                    <div class="settings-section-body">
+                        {{ $slot }}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+</section>

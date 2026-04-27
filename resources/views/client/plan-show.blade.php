@@ -1,5 +1,3 @@
-@vite('resources/css/dashboard.css')
-
 @extends('layouts.public')
 
 @section('content')
@@ -13,14 +11,20 @@
                 </h1>
 
                 <div class="client-panel-header-actions">
-                    <a href="{{ route('dashboard') }}" class="landing-button landing-button-secondary">
+                    <a href="{{ route('client.request.show', ['requestId' => $clientRequest->id]) }}"
+                       class="landing-button landing-button-secondary">
+                        Ver solicitud
+                    </a>
+
+                    <a href="{{ route('dashboard') }}"
+                       class="landing-button landing-button-secondary">
                         Volver al panel
                     </a>
                 </div>
             </div>
 
             <p class="client-panel-subtitle client-panel-subtitle-full">
-                Aquí puedes consultar el contenido del último plan publicado para tu solicitud.
+                Aquí puedes consultar el último plan publicado asociado a tu solicitud #{{ $clientRequest->id }}.
             </p>
         </div>
 
@@ -37,8 +41,13 @@
             </div>
 
             <div class="client-plan-meta">
+                <p><strong>Solicitud:</strong> #{{ $clientRequest->id }}</p>
                 <p><strong>Versión:</strong> {{ $plan->version }}</p>
                 <p><strong>Fecha de publicación:</strong> {{ optional($plan->published_at)->format('d/m/Y H:i') }}</p>
+            </div>
+
+            <div class="client-plan-summary">
+                <p><strong>Objetivo asociado:</strong> {{ $clientRequest->goal }}</p>
             </div>
         </section>
 
@@ -47,6 +56,16 @@
 
             <div class="client-plan-content">
                 {!! $plan->description !!}
+            </div>
+        </section>
+
+        <section class="client-panel-status-card client-plan-note-card">
+            <div class="client-panel-history-content">
+                <p class="client-request-block-title">Importante</p>
+                <p>
+                    Este plan tiene carácter orientativo y se basa en la información facilitada en tu solicitud.
+                    No sustituye la valoración individualizada de profesionales sanitarios.
+                </p>
             </div>
         </section>
     </section>

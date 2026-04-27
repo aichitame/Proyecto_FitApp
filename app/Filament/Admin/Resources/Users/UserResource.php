@@ -5,8 +5,6 @@ namespace App\Filament\Admin\Resources\Users;
 use App\Filament\Admin\Resources\Users\Pages\CreateUser;
 use App\Filament\Admin\Resources\Users\Pages\EditUser;
 use App\Filament\Admin\Resources\Users\Pages\ListUsers;
-use App\Filament\Admin\Resources\Users\Schemas\UserForm;
-use App\Filament\Admin\Resources\Users\Tables\UsersTable;
 use App\Models\User;
 use BackedEnum;
 use Filament\Resources\Resource;
@@ -19,6 +17,10 @@ use Filament\Tables\Filters\SelectFilter;
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
+
+    protected static ?string $navigationLabel = 'Usuarios';
+    protected static ?string $modelLabel = 'usuario';
+    protected static ?string $pluralModel = 'usuarios';
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
@@ -75,11 +77,16 @@ public static function form(Schema $schema): Schema
                 'client' => 'success',
                 default => 'gray',
             })
+            ->formatStateUsing(fn (string $state): string => match ($state) {
+                'admin' => 'Administrador',
+                'client' => 'Cliente',
+                default => $state,
+            })
             ->sortable(),
 
             TextColumn::make('created_at')
             ->label('Fecha de registro')
-            ->dateTime()
+            ->dateTime('d/m/Y H:i')
             ->sortable(),
         ])
         ->filters([

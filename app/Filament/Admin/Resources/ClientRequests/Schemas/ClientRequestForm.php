@@ -2,6 +2,7 @@
 
 namespace App\Filament\Admin\Resources\ClientRequests\Schemas;
 
+use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
@@ -20,7 +21,10 @@ class ClientRequestForm
                         Select::make('user_id')
                             ->relationship('user', 'name')
                             ->label('Cliente')
-                            ->required(),
+                            ->searchable()
+                            ->preload()
+                            ->required()
+                            ->disabledOn('edit'),
 
                         TextInput::make('age')
                             ->label('Edad')
@@ -28,9 +32,15 @@ class ClientRequestForm
                             ->numeric()
                             ->minValue(1),
 
-                        TextInput::make('gender')
+                        Select::make('gender')
                             ->label('Sexo')
-                            ->required(),
+                            ->options([
+                                'Female' => 'Femenino',
+                                'Male' => 'Masculino',
+                                'Other' => 'Otro',
+                            ])
+                            ->required()
+                            ->native(false),
 
                         TextInput::make('height')
                             ->label('Altura (cm)')
@@ -69,31 +79,46 @@ class ClientRequestForm
                             ->rows(3)
                             ->required(fn (Get $get): bool => (bool) $get('has_allergies'))
                             ->visible(fn (Get $get): bool => (bool) $get('has_allergies')),
-                    ])
-                    ->columns(1),
+                    ]),
 
                 Section::make('Actividad física')
                     ->schema([
-                        TextInput::make('physical_activity_frequency')
+                        Select::make('physical_activity_frequency')
                             ->label('Frecuencia de actividad física')
-                            ->required(),
-
-                        Textarea::make('physical_activity_type')
-                            ->label('Tipo de actividad física')
+                            ->options([
+                                'none' => 'Ninguna',
+                                '1_2_days' => '1-2 días por semana',
+                                '3_4_days' => '3-4 días por semana',
+                                '5_plus_days' => '5 o más días por semana',
+                            ])
                             ->required()
-                            ->rows(3),
+                            ->native(false),
+
+                        CheckboxList::make('physical_activity_type')
+                            ->label('Tipo de actividad física')
+                            ->options([
+                                'walking' => 'Caminar',
+                                'running' => 'Running',
+                                'gym' => 'Gimnasio',
+                                'cycling' => 'Ciclismo',
+                                'yoga_pilates' => 'Yoga / Pilates',
+                                'swimming' => 'Natación',
+                                'team_sports' => 'Deportes de equipo',
+                                'other' => 'Otro',
+                            ])
+                            ->columns(2),
 
                         Textarea::make('physical_limitations')
                             ->label('Limitaciones físicas')
                             ->rows(3),
-                    ])
-                    ->columns(1),
+                    ]),
 
                 Section::make('Objetivo y estado')
                     ->schema([
-                        TextInput::make('goal')
+                        Textarea::make('goal')
                             ->label('Objetivo')
-                            ->required(),
+                            ->required()
+                            ->rows(3),
 
                         Textarea::make('additional_observations')
                             ->label('Observaciones adicionales')
@@ -107,7 +132,7 @@ class ClientRequestForm
                             ])
                             ->required()
                             ->native(false),
-                        
+
                         Select::make('status')
                             ->label('Estado')
                             ->options([
@@ -117,11 +142,15 @@ class ClientRequestForm
                                 'rejected' => 'Rechazada',
                             ])
                             ->default('pending')
-                            ->visibleOn('edit')
                             ->required()
                             ->native(false),
-                    ])
-                    ->columns(1),
+
+                        Textarea::make('rejection_reason')
+                            ->label('Motivo de rechazo')
+                            ->rows(3)
+                            ->visible(fn (Get $get): bool => $get('status') === 'rejected')
+                            ->required(fn (Get $get): bool => $get('status') === 'rejected'),
+                    ]),
             ]);
     }
 }

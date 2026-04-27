@@ -3,7 +3,8 @@
 @import './request-wizard.css';
 @import './landing.css';
 @import './auth.css';
-@import './plan-available-mail.css'
+@import './plan-available-mail.css';
+@import './settings.css';
 
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
@@ -72,5 +73,19 @@ body {
 /* \[:where(&)\]:size-4 {
     @apply size-4;
 } */
+ html,
+body {
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.landing-page {
+    flex: 1;
+}
 
 

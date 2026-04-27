@@ -1,8 +1,11 @@
 .landing-page {
-    min-height: 100vh;
-    background-color: #f9fafb;
+   background-color: #f9fafb;
     padding: 48px 24px;
     box-sizing: border-box;
+}
+
+.dark .landing-page {
+    background-color: #09090b;
 }
 
 .landing-hero {
@@ -113,6 +116,10 @@
     padding-bottom: 16px;
     padding-left: 24px;
 }
+.dark .landing-header {
+    background-color: #09090b;
+    border-bottom-color: #27272a;
+}
 
 .landing-header-inner {
     max-width: 1100px;
@@ -138,6 +145,14 @@
     color: #000000;
 }
 
+.dark .landing-header .landing-brand {
+    color: #f8fafc !important;
+}
+
+.dark .landing-header .landing-brand:hover {
+    color: #ffffff !important;
+}
+
 .landing-nav {
     display: flex;
     align-items: center;
@@ -154,6 +169,15 @@
 
 .landing-nav-link:hover {
     color: #111827;
+    text-decoration: underline;
+}
+
+.dark .landing-header .landing-nav-link {
+    color: #e5e7eb !important;
+}
+
+.dark .landing-header .landing-nav-link:hover {
+    color: #ffffff !important;
     text-decoration: underline;
 }
 
@@ -188,6 +212,16 @@
 
 .landing-button-secondary:hover {
     background-color: #f9fafb;
+}
+
+.dark .landing-header .landing-button-secondary {
+    background-color: #18181b;
+    color: #f8fafc !important;
+    border-color: #3f3f46;
+}
+
+.dark .landing-header .landing-button-secondary:hover {
+    background-color: #27272a;
 }
 
 @media (max-width: 768px) {

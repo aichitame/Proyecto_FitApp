@@ -1,29 +1,15 @@
 <?php
 
-use App\Models\Plan;
 use App\Models\ClientRequest;
-use App\Mail\PlanAvailableMail;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
 use App\Livewire\Client\RequestWizard;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 
 
 Route::redirect('/acceso-admin', '/admin')->name('admin.login');
-
-Route::get('/test-send-plan-mail', function () {
-    $clientRequest = ClientRequest::with('user')->first();
-    $plan = Plan::first();
-
-    Mail::to($clientRequest->user->email)->send(
-        new PlanAvailableMail($clientRequest, $plan)
-    );
-
-    dd('correo enviado correctamente');
-});
 
 Route::get('/', function () {
     return view('welcome');

@@ -23,6 +23,12 @@ use Filament\Tables\Filters\SelectFilter;
 class PlanResource extends Resource
 {
     protected static ?string $model = Plan::class;
+
+    protected static ?string $navigationLabel = 'Planes';
+    protected static ?string $modelLabel = 'plan';
+
+    protected static ?string $pluralModelLabel = 'planes';
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static ?string $recordTitleAttribute = 'name';
@@ -102,7 +108,9 @@ class PlanResource extends Resource
         return $table
         ->columns([
             TextColumn::make('clientRequest.id')
-            ->label('Solicitud')
+            ->label('Solicitud asociada')
+            ->badge()
+            ->formatStateUsing(fn ($state) => $state ? "Solicitud #{$state}" : 'Sin solicitud')
             ->sortable(),
 
         TextColumn::make('clientRequest.user.name')
@@ -110,9 +118,16 @@ class PlanResource extends Resource
         ->sortable()
         ->searchable(),
 
+        TextColumn::make('clientRequest.user.email')
+        ->label('Correo electrónico')
+        ->searchable()
+        ->toggleable(isToggledHiddenByDefault: true),
+
         TextColumn::make('name')
         ->label('Título del plan')
-        ->searchable(),
+        ->searchable()
+        ->wrap()
+        ->limit(50),
 
         TextColumn::make('version')
         ->label('Versión')
@@ -126,6 +141,11 @@ class PlanResource extends Resource
             'draft' => 'warning',
             'published' => 'success',
             default => 'gray',
+        })
+        ->formatStateUsing(fn (string $state): string => match ($state) {
+            'draft' => 'Borrador',
+            'published' => 'Publicado',
+            default => $state,
         })
         ->sortable(),
 
