@@ -6,7 +6,14 @@
             <flux:input wire:model="name" :label="'Nombre'" type="text" required autofocus autocomplete="name" />
 
             <div>
-                <flux:input wire:model="email" :label="'Correo electrónico'" type="email" required autocomplete="email" />
+                <flux:input
+                    wire:model="email"
+                    :label="'Correo electrónico'"
+                    type="email"
+                    autocomplete="email"
+                    readonly
+                    disabled
+                />
 
                 @if (auth()->user() instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! auth()->user()->hasVerifiedEmail())
                     <div>

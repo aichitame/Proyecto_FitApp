@@ -1,5 +1,6 @@
 .landing-page {
-   background-color: #f9fafb;
+    min-height: 100vh;
+    background-color: #f9fafb;
     padding: 48px 24px;
     box-sizing: border-box;
 }
@@ -17,6 +18,11 @@
     padding: 48px 32px;
 }
 
+.dark .landing-hero {
+    background-color: #18181b;
+    border-color: #27272a;
+}
+
 .landing-hero-content {
     max-width: 700px;
 }
@@ -28,6 +34,10 @@
     margin: 0 0 12px 0;
 }
 
+.dark .landing-eyebrow {
+    color: #a1a1aa;
+}
+
 .landing-title {
     font-size: 56px;
     font-weight: 700;
@@ -35,11 +45,19 @@
     margin: 0 0 16px 0;
 }
 
+.dark .landing-title {
+    color: #f8fafc;
+}
+
 .landing-subtitle {
     font-size: 18px;
     line-height: 1.6;
     color: #374151;
     margin: 0 0 24px 0;
+}
+
+.dark .landing-subtitle {
+    color: #d4d4d8;
 }
 
 .landing-actions {
@@ -54,17 +72,38 @@
     border-radius: 12px;
     text-decoration: none;
     font-size: 16px;
+    font-weight: 500;
 }
 
 .landing-button-primary {
     background-color: #f4b183;
     color: #000000;
+    border: 1px solid #f4b183;
+}
+
+.landing-button-primary:hover {
+    background-color: #eea46f;
+    border-color: #eea46f;
 }
 
 .landing-button-secondary {
     background-color: #ffffff;
     color: #111827;
     border: 1px solid #d1d5db;
+}
+
+.landing-button-secondary:hover {
+    background-color: #f9fafb;
+}
+
+.dark .landing-button-secondary {
+    background-color: #18181b;
+    color: #f8fafc;
+    border-color: #3f3f46;
+}
+
+.dark .landing-button-secondary:hover {
+    background-color: #27272a;
 }
 
 .landing-features {
@@ -82,10 +121,19 @@
     padding: 24px;
 }
 
+.dark .landing-feature-card {
+    background-color: #18181b;
+    border-color: #27272a;
+}
+
 .landing-feature-card h2 {
     font-size: 22px;
     margin: 0 0 12px 0;
     color: #111827;
+}
+
+.dark .landing-feature-card h2 {
+    color: #f8fafc;
 }
 
 .landing-feature-card p {
@@ -94,18 +142,8 @@
     line-height: 1.6;
 }
 
-@media (max-width: 768px) {
-    .landing-title {
-        font-size: 40px;
-    }
-
-    .landing-features {
-        grid-template-columns: 1fr;
-    }
-
-    .landing-hero {
-        padding: 32px 20px;
-    }
+.dark .landing-feature-card p {
+    color: #d4d4d8;
 }
 
 .landing-header {
@@ -116,6 +154,7 @@
     padding-bottom: 16px;
     padding-left: 24px;
 }
+
 .dark .landing-header {
     background-color: #09090b;
     border-bottom-color: #27272a;
@@ -127,7 +166,6 @@
     margin-right: auto;
     margin-bottom: 0;
     margin-left: auto;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -181,61 +219,15 @@
     text-decoration: underline;
 }
 
-.landing-button {
-    display: inline-block;
-    padding-top: 10px;
-    padding-right: 16px;
-    padding-bottom: 10px;
-    padding-left: 16px;
-    border-radius: 12px;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 500;
-}
-
-.landing-button-primary {
+.dark .landing-header .landing-button-primary {
     background-color: #f4b183;
-    color: #000000;
-    border: 1px solid #f4b183;
+    color: #111827 !important;
+    border-color: #f4b183;
 }
 
-.landing-button-primary:hover {
+.dark .landing-header .landing-button-primary:hover {
     background-color: #eea46f;
     border-color: #eea46f;
-}
-
-.landing-button-secondary {
-    background-color: #ffffff;
-    color: #111827;
-    border: 1px solid #d1d5db;
-}
-
-.landing-button-secondary:hover {
-    background-color: #f9fafb;
-}
-
-.dark .landing-header .landing-button-secondary {
-    background-color: #18181b;
-    color: #f8fafc !important;
-    border-color: #3f3f46;
-}
-
-.dark .landing-header .landing-button-secondary:hover {
-    background-color: #27272a;
-}
-
-@media (max-width: 768px) {
-    .landing-header-inner {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .landing-nav {
-        width: 100%;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-    }
 }
 
 .landing-info-section {
@@ -256,6 +248,11 @@
     padding-left: 24px;
 }
 
+.dark .landing-info-box {
+    background-color: #18181b;
+    border-color: #27272a;
+}
+
 .landing-section-title {
     font-size: 32px;
     font-weight: 700;
@@ -266,6 +263,10 @@
     margin-left: 0;
 }
 
+.dark .landing-section-title {
+    color: #f8fafc;
+}
+
 .landing-section-text {
     font-size: 18px;
     line-height: 1.7;
@@ -274,4 +275,34 @@
     margin-right: 0;
     margin-bottom: 0;
     margin-left: 0;
+}
+
+.dark .landing-section-text {
+    color: #d4d4d8;
+}
+
+@media (max-width: 768px) {
+    .landing-title {
+        font-size: 40px;
+    }
+
+    .landing-features {
+        grid-template-columns: 1fr;
+    }
+
+    .landing-hero {
+        padding: 32px 20px;
+    }
+
+    .landing-header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .landing-nav {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
 }

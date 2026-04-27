@@ -35,9 +35,9 @@ class ClientRequestForm
                         Select::make('gender')
                             ->label('Sexo')
                             ->options([
-                                'Female' => 'Femenino',
-                                'Male' => 'Masculino',
-                                'Other' => 'Otro',
+                                'Femenino' => 'Femenino',
+                                'Masculino' => 'Masculino',
+                                'Prefiero no decirlo' => 'Prefiero no decirlo',
                             ])
                             ->required()
                             ->native(false),

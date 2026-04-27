@@ -2,9 +2,9 @@
 
 @php
     $genderLabels = [
-        'Female' => 'Femenino',
-        'Male' => 'Masculino',
-        'Other' => 'Otro',
+        'Femenino' => 'Femenino',
+        'Masculino' => 'Masculino',
+        'Prefiero no decirlo' => 'Prefiero no decirlo',
     ];
 
     $activityFrequencyLabels = [

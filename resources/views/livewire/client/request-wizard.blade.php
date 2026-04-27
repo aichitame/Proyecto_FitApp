@@ -48,10 +48,16 @@
 
                         <div class="wizard-field">
                             <label for="gender" class="wizard-label">Sexo</label>
-                            <input id="gender" type="text" wire:model.live="form.gender" class="wizard-input" placeholder="Ej. Femenino">
-                            @error('form.gender')
-                                <p class="wizard-error">{{ $message }}</p>
-                            @enderror
+                            <select id="gender" wire:model.live="form.gender" class="wizard-input">
+                            <option value="">Selecciona una opción</option>
+                            <option value="Femenino">Femenino</option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Prefiero no decirlo">Prefiero no decirlo</option>
+                            </select>
+
+                        @error('form.gender')
+                            <p class="wizard-error">{{ $message }}</p>
+                        @enderror
                         </div>
 
                         <div class="wizard-field">

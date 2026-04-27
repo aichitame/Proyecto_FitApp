@@ -5,6 +5,7 @@ namespace App\Livewire\Client;
 use App\Models\ClientRequest;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class RequestWizard extends Component {
 
@@ -119,7 +120,7 @@ class RequestWizard extends Component {
     protected function stepOneRules(): array {
         return [
             'form.age' => ['required', 'integer', 'min:1'],
-            'form.gender' => ['required', 'string'],
+            'form.gender' => ['required', Rule::in(['Femenino', 'Masculino', 'Prefiero no decirlo'])],
             'form.height' => ['required', 'numeric', 'min:1'],
             'form.weight' => ['required', 'numeric', 'min:1'],
         ];
@@ -132,7 +133,7 @@ class RequestWizard extends Component {
             'form.allergies_description' => [
                 'nullable',
                 'string',
-                \Illuminate\Validation\Rule::requiredIf(fn () => $this->form['has_allergies'] === true)
+                Rule::requiredIf(fn () => $this->form['has_allergies'] === true)
                 ],
         ];
     }
@@ -168,7 +169,8 @@ class RequestWizard extends Component {
         'form.age.integer' => 'La edad debe ser un número entero.',
         'form.age.min' => 'La edad debe ser mayor que 0.',
 
-        'form.gender.required' => 'Debes indicar tu sexo.',
+        'form.gender.required' => 'Debes seleccionar una opción en el campo sexo.',
+        'form.gender.in' => 'La opción seleccionada para el sexo no es válida.',
         'form.height.required' => 'Debes indicar tu altura.',
         'form.height.numeric' => 'La altura debe ser un número.',
         'form.weight.required' => 'Debes indicar tu peso.',
@@ -186,6 +188,5 @@ class RequestWizard extends Component {
 
         ];
     }
-
 
 }
