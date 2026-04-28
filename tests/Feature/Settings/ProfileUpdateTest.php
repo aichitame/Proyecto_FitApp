@@ -19,9 +19,11 @@ class ProfileUpdateTest extends TestCase
         $this->get('/settings/profile')->assertOk();
     }
 
-    public function test_profile_information_can_be_updated(): void
+    public function test_profile_name_can_be_updated_but_email_cannot_be_changed(): void
     {
         $user = User::factory()->create();
+
+        $originalEmail = $user->email;
 
         $this->actingAs($user);
 
@@ -35,8 +37,8 @@ class ProfileUpdateTest extends TestCase
         $user->refresh();
 
         $this->assertEquals('Test User', $user->name);
-        $this->assertEquals('test@example.com', $user->email);
-        $this->assertNull($user->email_verified_at);
+        $this->assertEquals($originalEmail, $user->email);
+        $this->assertNotNull($user->email_verified_at);
     }
 
     public function test_email_verification_status_is_unchanged_when_email_address_is_unchanged(): void
@@ -70,7 +72,7 @@ class ProfileUpdateTest extends TestCase
             ->assertRedirect('/');
 
         $this->assertNull($user->fresh());
-        $this->assertFalse(auth()->check());
+        $this->assertGuest();
     }
 
     public function test_correct_password_must_be_provided_to_delete_account(): void
