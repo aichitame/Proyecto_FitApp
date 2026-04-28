@@ -1,4 +1,5 @@
-<div class="flex flex-col gap-6">
+<div class="auth-page auth-register-page">
+    <div class="auth-card flex flex-col gap-6">
     <x-auth-header
     :title="__('Crear cuenta')"
     :description="__('Introduce tus datos para crear tu cuenta')" />
@@ -51,8 +52,11 @@
         />
 
         <div class="flex items-center justify-end">
-            <flux:button type="submit" variant="primary" class="w-full">
-                {{ __('Crear cuenta') }}
+            <flux:button
+                type="submit"
+                variant="primary"
+                class="w-full !bg-[#a3ebd3] !border-[#8ee3c6] !text-[#103329] hover:!bg-[#8ee3c6] hover:!border-[#74d5b3]">
+                    {{ __('Crear cuenta') }}
             </flux:button>
         </div>
     </form>
@@ -61,4 +65,5 @@
         {{ __('¿Ya tienes cuenta?') }}
         <flux:link :href="route('login')" wire:navigate>{{ __('Iniciar sesión') }}</flux:link>
     </div>
+</div>
 </div>

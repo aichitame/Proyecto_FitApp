@@ -194,14 +194,10 @@
 /* Hero */
 
 .landing-hero {
-       max-width: 1180px;
+    max-width: 1180px;
     margin: 0 auto 40px;
     background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.68), rgba(247, 251, 248, 0.74)),
-        url("/public/images/sport-food.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+        linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(247, 251, 248, 0.94));
     border: 1px solid #d9e5dd;
     border-radius: 32px;
     padding: 64px 56px 56px;
@@ -253,7 +249,7 @@
 }
 
 .landing-hero-content {
-    max-width: 720px;
+    max-width: 920px;
     position: relative;
     z-index: 1;
 }

@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use Filament\View\PanelsRenderHook;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -27,8 +28,12 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->brandName('FitApp Admin')
+            ->renderHook(
+                PanelsRenderHook::HEAD_END,
+                fn () => '<link rel="stylesheet" href="' . asset('css/admin-login.css') . '">'
+            )
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::hex('#a3ebd3'),
             ])
             ->discoverResources(in: app_path('Filament/Admin/Resources'), for: 'App\Filament\Admin\Resources')
             ->discoverPages(in: app_path('Filament/Admin/Pages'), for: 'App\Filament\Admin\Pages')
