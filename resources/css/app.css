@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import '../../vendor/livewire/flux/dist/flux.css';
+
 @import './request-wizard.css';
 @import './landing.css';
 @import './auth.css';
@@ -28,9 +29,9 @@
     --color-zinc-900: #171717;
     --color-zinc-950: #0a0a0a;
 
-    --color-accent: var(--color-neutral-800);
-    --color-accent-content: var(--color-neutral-800);
-    --color-accent-foreground: var(--color-white);
+    --color-accent: #2f7d5c;
+    --color-accent-content: #245f47;
+    --color-accent-foreground: #ffffff;
 }
 
 @layer theme {
@@ -42,6 +43,27 @@
 }
 
 @layer base {
+    :root {
+        --fitapp-primary: #2f7d5c;
+        --fitapp-primary-dark: #245f47;
+        --fitapp-primary-soft: #e7f4ec;
+        --fitapp-primary-light: #a8d5ba;
+
+        --fitapp-bg: #f7fbf8;
+        --fitapp-bg-warm: #fffaf2;
+        --fitapp-surface: #ffffff;
+
+        --fitapp-text: #172033;
+        --fitapp-muted: #667085;
+        --fitapp-border: #d9e5dd;
+
+        --fitapp-shadow-soft: 0 18px 50px rgba(23, 32, 51, 0.08);
+
+        --fitapp-radius-xl: 32px;
+        --fitapp-radius-lg: 24px;
+        --fitapp-radius-md: 16px;
+        --fitapp-radius-sm: 12px;
+    }
 
     *,
     ::after,
@@ -50,6 +72,24 @@
     ::file-selector-button {
         border-color: var(--color-gray-200, currentColor);
     }
+
+    html,
+    body {
+        min-height: 100%;
+    }
+
+    body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        font-family: "Quicksand", sans-serif;
+        background: var(--fitapp-bg);
+        color: var(--fitapp-text);
+    }
+
+    a {
+        color: inherit;
+    }
 }
 
 [data-flux-field]:not(ui-radio, ui-checkbox) {
@@ -57,7 +97,7 @@
 }
 
 [data-flux-label] {
-    @apply  !mb-0 !leading-tight;
+    @apply !mb-0 !leading-tight;
 }
 
 input:focus[data-flux-control],
@@ -66,26 +106,6 @@ select:focus[data-flux-control] {
     @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
 }
 
-body {
-    font-family: "Quicksand", sans-serif;
-}
-
-/* \[:where(&)\]:size-4 {
-    @apply size-4;
-} */
- html,
-body {
-    min-height: 100%;
-}
-
-body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
 .landing-page {
     flex: 1;
 }
-
-

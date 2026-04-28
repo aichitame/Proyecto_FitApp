@@ -45,6 +45,21 @@
         @yield('content')
     </main>
 
+   <footer class="landing-footer">
+    <div class="landing-footer-inner">
+        <p class="landing-footer-text">
+            Planificación nutricional y deportiva orientativa, pensada para acompañarte de forma clara y sencilla.
+            FitApp ofrece planes orientativos de alimentación y actividad física. Esta aplicación no constituye una herramienta médica ni sustituye el asesoramiento, diagnóstico o tratamiento de profesionales sanitarios.
+        </p>
+
+        <div class="landing-footer-legal-links">
+            <a href="#">Aviso legal</a>
+            <a href="#">Política de privacidad</a>
+            <a href="#">Términos y condiciones</a>
+        </div>
+    </div>
+</footer>
+
     @fluxScripts
 </body>
 </html>
