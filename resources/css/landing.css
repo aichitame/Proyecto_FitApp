@@ -239,12 +239,7 @@
 }
 
 .dark .landing-hero {
-     background:
-        linear-gradient(135deg, rgba(24, 24, 27, 0.78), rgba(17, 24, 39, 0.82)),
-        url("/public/images/sport-food.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background: linear-gradient(135deg, #18181b, #111827);
     border-color: #27272a;
 }
 
@@ -264,6 +259,14 @@
     color: #28745c;
     font-size: 14px;
     font-weight: 700;
+}
+
+.landing-eyebrow-desktop {
+    display: inline;
+}
+
+.landing-eyebrow-mobile {
+    display: none;
 }
 
 .dark .landing-eyebrow {
@@ -665,15 +668,28 @@
     }
 
     .landing-nav {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .landing-nav-link {
         display: none;
+    }
+
+    .landing-nav .landing-button {
+        flex: 1;
+        padding: 11px 12px;
+        font-size: 14px;
     }
 
     .landing-actions {
         width: 100%;
     }
 
-    .landing-actions .landing-button,
-    .landing-nav .landing-button {
+    .landing-actions .landing-button {
         flex: 1;
     }
 
@@ -701,6 +717,23 @@
         font-size: 17px;
     }
 
+    .landing-eyebrow {
+        width: auto;
+        max-width: 100%;
+        padding: 8px 14px;
+        font-size: 13px;
+        line-height: 1.35;
+        border-radius: 999px;
+    }
+
+    .landing-eyebrow-desktop {
+        display: none;
+    }
+
+    .landing-eyebrow-mobile {
+        display: inline;
+    }
+
     .landing-info-box {
         padding: 28px 22px;
         border-radius: 24px;
@@ -712,5 +745,23 @@
 
     .how-steps {
         grid-template-columns: 1fr;
+    }
+
+    .landing-footer {
+        padding: 24px 18px;
+    }
+
+    .landing-footer-text {
+        font-size: 13px;
+        line-height: 1.55;
+    }
+
+    .landing-footer-legal-links {
+        margin-top: 14px;
+        gap: 10px 14px;
+    }
+
+    .landing-footer-legal-links a {
+        font-size: 13px;
     }
 }
