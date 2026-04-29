@@ -123,11 +123,12 @@
             </article>
 
             <article class="client-panel-card">
-                <h2>Nueva solicitud</h2>
-                <p>Inicia tu valoración inicial y completa el formulario paso a paso.</p>
+                <h2>Cómo funciona tu solicitud</h2>
+                <p>Completa el formulario con tus datos, hábitos y objetivo principal. El equipo revisará la información
+                y publicará tu plan orientativo cuando esté preparado.</p>
 
-                <a href="{{ route('client.requests.create') }}" class="landing-button landing-button-primary">
-                    Crear solicitud
+                <a href="{{ route('como-funciona') }}" class="landing-button landing-button-primary">
+                    Ver cómo funciona
                 </a>
             </article>
         </section>

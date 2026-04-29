@@ -30,7 +30,10 @@ class AdminPanelProvider extends PanelProvider
             ->brandName('FitApp Admin')
             ->renderHook(
                 PanelsRenderHook::HEAD_END,
-                fn () => '<link rel="stylesheet" href="' . asset('css/admin-login.css') . '">'
+                fn () => '
+                <link rel="stylesheet" href="' . asset('css/admin-login.css') . '">
+                <link rel="stylesheet" href="' . asset('css/admin-panel.css') . '">
+                '
             )
             ->colors([
                 'primary' => Color::hex('#a3ebd3'),

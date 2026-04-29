@@ -63,7 +63,7 @@
 
 .wizard-progress-bar {
     height: 100%;
-    background: #f4b183;
+    background: #a3ebd3;
     border-radius: 999px;
 }
 
@@ -159,8 +159,8 @@
 .wizard-select:focus,
 .wizard-textarea:focus {
     outline: none;
-    border-color: #f4b183;
-    box-shadow: 0 0 0 3px rgba(244, 177, 131, 0.18);
+    border-color: #8ee3c6;
+    box-shadow: 0 0 0 3px rgba(163, 235, 211, 0.35);
 }
 
 .wizard-textarea {
@@ -227,8 +227,16 @@
 }
 
 .wizard-button-primary {
-    background: #f4b183;
-    color: #111827;
+    background: #a3ebd3;
+    color: #103329;
+    border: 1px solid #8ee3c6;
+    box-shadow: 0 6px 14px rgba(73, 183, 145, 0.16);
+}
+
+.wizard-button-primary:hover {
+    background: #8ee3c6;
+    border-color: #74d5b3;
+    box-shadow: 0 8px 18px rgba(73, 183, 145, 0.20);
 }
 
 .wizard-button-secondary {
@@ -268,14 +276,17 @@
     display: inline-block;
     margin-top: 8px;
     padding: 10px 16px;
-    background-color: #f4b183;
-    color: #000000;
+    background-color: #a3ebd3;
+    color: #103329;
     text-decoration: none;
     border-radius: 12px;
+    border: 1px solid #8ee3c6;
+    font-weight: 700;
 }
 
 .request-sent-link:hover {
-    background-color: #eea46f;
+    background-color: #8ee3c6;
+    border-color: #74d5b3;
 }
 
 @media (max-width: 900px) {
