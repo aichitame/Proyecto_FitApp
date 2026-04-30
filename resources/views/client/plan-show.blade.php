@@ -6,24 +6,19 @@
             <p class="client-panel-eyebrow">Área privada de cliente</p>
 
             <div class="client-panel-topbar">
-                <h1 class="client-panel-title">
-                    Mi plan orientativo
-                </h1>
+                <div>
+                    <h1 class="client-panel-title">
+                        Mi plan orientativo
+                    </h1>
 
-                <div class="client-panel-header-actions">
-                    <a href="{{ route('client.request.show', ['requestId' => $clientRequest->id]) }}"
-                       class="landing-button landing-button-secondary">
-                        Ver solicitud
-                    </a>
-
-                    <a href="{{ route('dashboard') }}"
-                       class="landing-button landing-button-secondary">
-                        Volver al panel
+                    <a href="{{ route('dashboard') }}" class="client-panel-back-link">
+                        <span class="client-panel-back-link-icon" aria-hidden="true">←</span>
+                        <span>Ir a mi panel</span>
                     </a>
                 </div>
             </div>
 
-            <p class="client-panel-subtitle client-panel-subtitle-full">
+            <p class="client-panel-subtitle client-panel-subtitle-full client-plan-subtitle">
                 Aquí puedes consultar el último plan publicado asociado a tu solicitud #{{ $clientRequest->id }}.
             </p>
         </div>
@@ -48,6 +43,13 @@
 
             <div class="client-plan-summary">
                 <p><strong>Objetivo asociado:</strong> {{ $clientRequest->goal }}</p>
+            </div>
+
+            <div class="client-plan-card-actions">
+                <a href="{{ route('client.request.show', ['requestId' => $clientRequest->id]) }}"
+            class="landing-button landing-button-secondary">
+                Ver solicitud asociada
+                </a>
             </div>
         </section>
 

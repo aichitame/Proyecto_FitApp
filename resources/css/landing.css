@@ -422,7 +422,7 @@
         radial-gradient(circle at top left, rgba(163, 235, 211, 0.14), transparent 34%),
         linear-gradient(180deg, #eef8fb 0%, #f8fcf9 100%);
     border-top: 1px solid rgba(217, 229, 221, 0.85);
-    padding: 34px 24px;
+    padding: 24px 24px;
 }
 
 .landing-footer-inner {
@@ -433,8 +433,8 @@
 .landing-footer-text {
     margin: 0;
     color: #5f6b7a;
-    font-size: 14px;
-    line-height: 1.8;
+    font-size: 13px;
+    line-height: 1.45;
     text-align: center;
 }
 
@@ -442,13 +442,13 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 18px;
-    margin-top: 18px;
+    gap: 14px;
+    margin-top: 12px;
 }
 
 .landing-footer-legal-links a {
     color: #28745c;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 700;
     text-decoration: none;
 }
@@ -644,8 +644,13 @@
 }
 
 @media (max-width: 640px) {
+
     .landing-page {
         padding: 32px 16px 56px;
+    }
+
+    .landing-nav-auth {
+    display: none !important;
     }
 
     .landing-header {
@@ -653,18 +658,22 @@
     }
 
     .landing-header-inner {
-        align-items: flex-start;
+    min-height: auto;
+    padding: 14px 0;
+    align-items: center;
+    gap: 0;
+
     }
 
     .landing-brand {
-        font-size: 24px;
+    font-size: 22px;
     }
 
     .landing-brand::before {
-        width: 38px;
-        height: 38px;
-        font-size: 20px;
-        border-radius: 14px;
+    width: 36px;
+    height: 36px;
+    font-size: 19px;
+    border-radius: 13px;
     }
 
     .landing-nav {
@@ -673,6 +682,9 @@
         flex-direction: row;
         gap: 10px;
         margin-top: 10px;
+    }
+    .landing-nav-dashboard {
+    display: none;
     }
 
     .landing-nav-link {
@@ -748,20 +760,20 @@
     }
 
     .landing-footer {
-        padding: 24px 18px;
+    padding: 16px 14px;
     }
 
     .landing-footer-text {
-        font-size: 13px;
-        line-height: 1.55;
+    font-size: 12px;
+    line-height: 1.35;
     }
 
     .landing-footer-legal-links {
-        margin-top: 14px;
-        gap: 10px 14px;
+    margin-top: 10px;
+    gap: 8px 12px;
     }
 
     .landing-footer-legal-links a {
-        font-size: 13px;
+    font-size: 12px;
     }
 }

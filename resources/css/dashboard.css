@@ -1,7 +1,7 @@
 .client-panel {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 3rem 1.5rem 4rem;
+    padding: 1.5rem 1.5rem 4rem;
 }
 
 .client-panel-header {
@@ -40,6 +40,10 @@
     max-width: none;
 }
 
+.client-plan-subtitle {
+    max-width: 28rem;
+}
+
 .client-panel-header-actions {
     display: flex;
     gap: 0.75rem;
@@ -61,6 +65,41 @@
 .client-panel-header-actions .landing-button {
     min-width: 180px;
 }
+
+/* Enlace de vuelta */
+
+.client-panel-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-top: 0.75rem;
+    color: #28745c;
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.client-panel-back-link:hover {
+    color: #103329;
+    transform: translateX(-2px);
+}
+
+.client-panel-back-link-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    background-color: rgba(163, 235, 211, 0.35);
+    color: #28745c;
+    font-size: 18px;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+/* Tarjetas */
 
 .client-panel-status-card {
     margin-bottom: 1.75rem;
@@ -199,6 +238,8 @@
     min-width: 170px;
 }
 
+/* Plan */
+
 .client-plan-meta {
     display: flex;
     flex-wrap: wrap;
@@ -210,6 +251,28 @@
     margin: 0;
     font-size: 0.98rem;
     color: #475569;
+}
+
+.client-plan-summary {
+    margin-top: 1rem;
+}
+
+.client-plan-summary p {
+    margin: 0;
+    font-size: 0.98rem;
+    line-height: 1.6;
+    color: #475569;
+}
+
+.client-plan-card-actions {
+    display: flex;
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.client-plan-card-actions .landing-button {
+    min-width: 190px;
 }
 
 .client-plan-content-card h2 {
@@ -235,17 +298,6 @@
     color: #0f172a;
 }
 
-.client-plan-summary {
-    margin-top: 1rem;
-}
-
-.client-plan-summary p {
-    margin: 0;
-    font-size: 0.98rem;
-    line-height: 1.6;
-    color: #475569;
-}
-
 .client-plan-note-card {
     margin-top: 1.5rem;
 }
@@ -253,6 +305,8 @@
 .client-plan-note-card p {
     margin: 0;
 }
+
+/* Histórico y detalle */
 
 .client-panel-history {
     margin-top: 2rem;
@@ -355,6 +409,41 @@
     color: #0f172a;
 }
 
+/* Resumen de solicitud */
+
+.client-request-summary-meta {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.client-request-summary-meta p {
+    margin: 0;
+    font-size: 0.98rem;
+    line-height: 1.6;
+    color: #475569;
+}
+
+.client-request-summary-meta strong {
+    color: #0f172a;
+}
+
+.client-request-summary-actions {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+}
+
+.client-request-summary-actions .landing-button {
+    min-width: 220px;
+}
+
+/* Responsive tablet */
+
 @media (max-width: 900px) {
     .client-panel-topbar {
         grid-template-columns: 1fr;
@@ -392,6 +481,234 @@
     }
 }
 
+/* Responsive móvil */
+
+@media (max-width: 640px) {
+    .client-panel {
+        padding: 0 1rem 2.5rem;
+    }
+
+    .client-panel-header {
+        margin-bottom: 1.45rem;
+    }
+
+    .client-panel-eyebrow {
+        font-size: 0.85rem;
+        margin-bottom: 0.55rem;
+    }
+
+    .client-panel-topbar {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .client-panel-title {
+        font-size: 2.25rem;
+        line-height: 1.05;
+        margin-bottom: 0;
+    }
+
+    .client-panel-back-link {
+        margin-top: 0.65rem;
+        font-size: 0.95rem;
+    }
+
+    .client-panel-back-link-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+    }
+
+    .client-panel-header-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+        width: 100%;
+    }
+
+    .client-panel-header-actions:has(form) {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .client-panel-header-actions form {
+        width: 100%;
+    }
+
+    .client-panel-header-actions .landing-button,
+    .client-panel-header-actions form button {
+        width: 100%;
+        min-width: 0;
+        padding: 0.85rem 0.9rem;
+        font-size: 0.95rem;
+    }
+
+    .client-panel-subtitle {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-top: 1.1rem;
+    }
+
+    .client-plan-subtitle {
+        max-width: 20rem;
+        margin: 0.65rem auto 0;
+        text-align: center;
+    }
+
+    .client-panel-status-card,
+    .client-panel-card,
+    .client-panel-history {
+        border-radius: 1.35rem;
+        padding: 1.35rem;
+    }
+
+    .client-panel-status-card {
+        margin-bottom: 1rem;
+    }
+
+    .client-panel-status-header {
+        gap: 0.85rem;
+        margin-bottom: 1rem;
+    }
+
+    .client-panel-status-title {
+        font-size: 1.55rem;
+        line-height: 1.2;
+    }
+
+    .client-status-badge {
+        padding: 0.45rem 0.8rem;
+        font-size: 0.82rem;
+    }
+
+    .client-panel-status-meta {
+        display: grid;
+        gap: 0.65rem;
+        margin-bottom: 1rem;
+    }
+
+    .client-panel-status-meta p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .client-panel-status-body p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .client-panel .landing-button {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .client-panel-grid {
+        gap: 1.25rem;
+    }
+
+    .client-panel-card h2 {
+        font-size: 1.45rem;
+        line-height: 1.25;
+    }
+
+    .client-panel-card p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .client-plan-meta {
+        display: grid;
+        gap: 0.75rem;
+    }
+
+    .client-plan-card-actions {
+        margin-top: 1.1rem;
+        padding-top: 1.1rem;
+    }
+
+    .client-plan-card-actions .landing-button {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .client-plan-content {
+        font-size: 0.95rem;
+        line-height: 1.7;
+    }
+
+    .client-panel-history {
+        margin-top: 1rem;
+    }
+
+    .client-panel-history-header {
+        margin-bottom: 1.25rem;
+    }
+
+    .client-panel-history-intro {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .client-panel-history-item {
+        padding: 1.15rem;
+        border-radius: 1rem;
+    }
+
+    .client-panel-history-id {
+        font-size: 1rem;
+    }
+
+    .client-panel-history-meta {
+        font-size: 0.9rem;
+    }
+
+    .client-panel-history-content {
+        gap: 0.5rem;
+        margin-bottom: 0;
+    }
+
+    .client-panel-history-content p {
+        font-size: 0.95rem;
+        line-height: 1.55;
+    }
+
+    .client-panel-history-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.65rem;
+    }
+
+    .client-panel-history-actions .landing-button {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .client-request-summary-meta {
+        grid-template-columns: 1fr;
+        gap: 0.7rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .client-request-summary-meta p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .client-request-summary-actions {
+        margin-top: 0;
+        padding-top: 0;
+        border-top: 0;
+    }
+
+    .client-request-summary-actions .landing-button {
+        width: 100%;
+        min-width: 0;
+    }
+}
+
+/* Modo oscuro */
+
 .dark .client-panel-eyebrow,
 .dark .client-panel-status-eyebrow,
 .dark .client-panel-history-intro,
@@ -402,7 +719,8 @@
 .dark .client-panel-history-content p,
 .dark .client-plan-meta p,
 .dark .client-plan-content,
-.dark .client-plan-summary p {
+.dark .client-plan-summary p,
+.dark .client-request-summary-meta p {
     color: #cbd5e1;
 }
 
@@ -415,7 +733,8 @@
 .dark .client-plan-meta strong,
 .dark .client-plan-content strong,
 .dark .client-panel-status-meta strong,
-.dark .client-panel-status-note strong {
+.dark .client-panel-status-note strong,
+.dark .client-request-summary-meta strong {
     color: #f8fafc;
 }
 
@@ -468,4 +787,25 @@
 .dark .client-panel-history-actions .landing-button-secondary:hover {
     background-color: #27272a;
     border-color: #52525b;
+}
+
+.dark .client-panel-back-link {
+    color: #a3ebd3;
+}
+
+.dark .client-panel-back-link:hover {
+    color: #f8fafc;
+}
+
+.dark .client-panel-back-link-icon {
+    background-color: rgba(163, 235, 211, 0.14);
+    color: #a3ebd3;
+}
+
+.dark .client-plan-card-actions {
+    border-top-color: #3f3f46;
+}
+
+.dark .client-request-summary-actions {
+    border-top-color: #3f3f46;
 }

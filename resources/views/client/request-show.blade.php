@@ -45,70 +45,78 @@
         <div class="client-panel-header">
             <p class="client-panel-eyebrow">Área privada de cliente</p>
 
-            <div class="client-panel-topbar">
-                <h1 class="client-panel-title">
-                    Solicitud #{{ $clientRequest->id }}
-                </h1>
+    <div class="client-panel-topbar">
+        <div>
+            <h1 class="client-panel-title">
+                Solicitud #{{ $clientRequest->id }}
+            </h1>
 
-                <div class="client-panel-header-actions">
-                    <a href="{{ route('dashboard') }}" class="landing-button landing-button-secondary">
-                        Volver al panel
-                    </a>
-                </div>
-            </div>
+            <a href="{{ route('dashboard') }}" class="client-panel-back-link">
+                <span class="client-panel-back-link-icon" aria-hidden="true">←</span>
+                <span>Ir a mi panel</span>
+            </a>
+        </div>
+    </div>
 
-            <p class="client-panel-subtitle client-panel-subtitle-full">
-                Aquí puedes consultar toda la información que enviaste en esta solicitud.
-            </p>
+    <p class="client-panel-subtitle client-panel-subtitle-full">
+        Aquí puedes consultar toda la información que enviaste en esta solicitud.
+    </p>
+</div>
+
+<section class="client-panel-status-card client-request-summary-card">
+    <div class="client-panel-status-header">
+        <div>
+            <p class="client-panel-status-eyebrow">Estado de la solicitud</p>
+            <h2 class="client-panel-status-title">Resumen</h2>
         </div>
 
-        <section class="client-panel-status-card">
-            <div class="client-panel-status-header">
-                <div>
-                    <p class="client-panel-status-eyebrow">Estado de la solicitud</p>
-                    <h2 class="client-panel-status-title">Resumen</h2>
-                </div>
+        <span class="client-status-badge client-status-badge-{{ $clientRequest->status }}">
+            @switch($clientRequest->status)
+                @case('pending')
+                    Pendiente
+                    @break
+                @case('in_review')
+                    En revisión
+                    @break
+                @case('completed')
+                    Completada
+                    @break
+                @case('rejected')
+                    Rechazada
+                    @break
+                @default
+                    {{ $clientRequest->status }}
+            @endswitch
+        </span>
+    </div>
 
-                <span class="client-status-badge client-status-badge-{{ $clientRequest->status }}">
-                    @switch($clientRequest->status)
-                        @case('pending')
-                            Pendiente
-                            @break
-                        @case('in_review')
-                            En revisión
-                            @break
-                        @case('completed')
-                            Completada
-                            @break
-                        @case('rejected')
-                            Rechazada
-                            @break
-                        @default
-                            {{ $clientRequest->status }}
-                    @endswitch
-                </span>
-            </div>
+    <div class="client-request-summary-meta">
+        <p>
+            <strong>Fecha de envío:</strong>
+            {{ $clientRequest->created_at?->format('d/m/Y H:i') }}
+        </p>
 
-            <div class="client-plan-meta">
-                <p><strong>Fecha de envío:</strong> {{ $clientRequest->created_at?->format('d/m/Y H:i') }}</p>
-                <p><strong>Último cambio de estado:</strong> {{ $clientRequest->status_changed_at?->format('d/m/Y H:i') ?? '—' }}</p>
-            </div>
+        <p>
+            <strong>Último cambio de estado:</strong>
+            {{ $clientRequest->status_changed_at?->format('d/m/Y H:i') ?? '—' }}
+        </p>
+    </div>
 
-            @if ($clientRequest->status === 'rejected' && $clientRequest->rejection_reason)
-                <div class="client-panel-status-note">
-                    <strong>Motivo de rechazo:</strong> {{ $clientRequest->rejection_reason }}
-                </div>
-            @endif
+    @if ($clientRequest->status === 'rejected' && $clientRequest->rejection_reason)
+        <div class="client-panel-status-note">
+            <strong>Motivo de rechazo:</strong> {{ $clientRequest->rejection_reason }}
+        </div>
+    @endif
 
-            @if ($publishedPlan)
-                <div class="client-panel-history-actions">
-                    <a href="{{ route('client.plan.show', ['requestId' => $clientRequest->id]) }}"
-                       class="landing-button landing-button-primary">
-                        Ver plan publicado
-                    </a>
-                </div>
-            @endif
-        </section>
+    @if ($publishedPlan)
+        <div class="client-request-summary-actions">
+            <a href="{{ route('client.plan.show', ['requestId' => $clientRequest->id]) }}"
+            class="landing-button landing-button-primary">
+                Ver plan publicado
+            </a>
+        </div>
+    @endif
+</section>
 
         <section class="client-panel-history">
             <div class="client-panel-history-header">

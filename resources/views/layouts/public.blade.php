@@ -21,23 +21,15 @@
         <div class="landing-header-inner">
             <a href="{{ route('home') }}" class="landing-brand">FitApp</a>
 
-            <nav class="landing-nav">
+            <nav class="landing-nav {{ auth()->check() ? 'landing-nav-auth' : '' }}">
                 <a href="{{ route('vision') }}" class="landing-nav-link">Nuestra visión</a>
                 <a href="{{ route('como-funciona') }}" class="landing-nav-link">Cómo funciona</a>
                 <a href="{{ route('contacto') }}" class="landing-nav-link">Contacto</a>
 
                 @guest
-                    <a href="{{ route('admin.login') }}" class="landing-button landing-button-secondary">
-                        Acceso admin
-                    </a>
+                    <a href="{{ route('admin.login') }}" class="landing-button landing-button-secondary">Acceso admin</a>
 
-                    <a href="{{ route('login') }}" class="landing-button landing-button-primary">
-                        Acceso cliente
-                    </a>
-                @else
-                    <a href="{{ route('dashboard') }}" class="landing-button landing-button-primary">
-                        Ir a mi panel
-                    </a>
+                    <a href="{{ route('login') }}" class="landing-button landing-button-primary">Acceso cliente</a>
                 @endguest
             </nav>
         </div>
@@ -50,9 +42,8 @@
     <footer class="landing-footer">
         <div class="landing-footer-inner">
             <p class="landing-footer-text">
-                Planificación nutricional y deportiva orientativa, pensada para acompañarte de forma clara y sencilla.
-                FitApp ofrece planes orientativos de alimentación y actividad física. Esta aplicación no constituye una herramienta médica ni sustituye el asesoramiento, diagnóstico o tratamiento de profesionales sanitarios.
-            </p>
+                    Planificación nutricional y deportiva orientativa. No constituye una herramienta médica ni sustituye el asesoramiento, diagnóstico o tratamiento de profesionales sanitarios.
+                </p>
 
             <div class="landing-footer-legal-links">
                 <a href="#">Aviso legal</a>
