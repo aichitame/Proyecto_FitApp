@@ -1,0 +1,32 @@
+{
+  "public/images/sport-food.jpg": {
+    "file": "assets/sport-food-Cniegw2Y.jpg",
+    "src": "public/images/sport-food.jpg"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-CIz_CakI.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/css/dashboard.css": {
+    "file": "assets/dashboard-BkDEe_d3.css",
+    "src": "resources/css/dashboard.css",
+    "isEntry": true
+  },
+  "resources/css/landing.css": {
+    "file": "assets/landing-D3gfjp29.css",
+    "src": "resources/css/landing.css",
+    "isEntry": true
+  },
+  "resources/css/request-wizard.css": {
+    "file": "assets/request-wizard-Dgbb5tqy.css",
+    "src": "resources/css/request-wizard.css",
+    "isEntry": true
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-l0sNRNKZ.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  }
+}
