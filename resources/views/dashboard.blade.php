@@ -96,14 +96,6 @@
                     <small>Revisa solicitudes pasadas y planes publicados.</small>
                 </a>
             @endif
-
-            <a href="{{ route('como-funciona') }}"
-            class="client-hero-menu-card"
-            onclick="this.closest('details').removeAttribute('open')">
-                <span>Ayuda</span>
-                <strong>Cómo funciona</strong>
-                <small>Consulta el proceso desde el envío hasta la publicación del plan.</small>
-            </a>
         </div>
     </div>
 </details>

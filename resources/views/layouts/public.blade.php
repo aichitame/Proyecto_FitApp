@@ -19,7 +19,10 @@
 <body>
     <header class="landing-header">
         <div class="landing-header-inner">
-            <a href="{{ route('home') }}" class="landing-brand">FitApp</a>
+            <a href="{{ route('home') }}" class="landing-brand landing-brand-with-logo">
+            <img src="{{ asset('images/logo-fitapp1.png') }}" alt="FitApp" class="landing-brand-logo">
+            <span>FitApp</span>
+            </a>
 
             @if (trim($__env->yieldContent('header_actions')))
                 @yield('header_actions')
@@ -66,9 +69,9 @@
             </p>
 
             <div class="landing-footer-legal-links">
-                <a href="#">Aviso legal</a>
-                <a href="#">Política de privacidad</a>
-                <a href="#">Términos y condiciones</a>
+                <a href="{{ route('aviso-legal') }}">Aviso legal</a>
+                <a href="{{ route('politica-privacidad') }}">Política de privacidad</a>
+                <a href="{{ route('terminos-condiciones') }}">Términos y condiciones</a>
             </div>
         </div>
     </footer>

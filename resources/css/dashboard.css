@@ -1144,21 +1144,21 @@
 /* Menú hamburguesa del dashboard como panel de acciones */
 
 .client-hero-menu-panel-large {
-    width: 520px;
-    padding: 14px;
+    width: 460px;
+    padding: 10px;
 }
 
 .client-hero-menu-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 10px;
+    gap: 8px;
 }
 
 .client-hero-menu-card {
     display: block;
-    padding: 16px;
+    padding: 12px 14px;
     border: 1px solid #d9e5dd;
-    border-radius: 18px;
+    border-radius: 15px;
     background:
         linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(248, 252, 249, 0.94));
     color: #172033;
@@ -1179,7 +1179,7 @@
 
 .client-hero-menu-card span {
     display: block;
-    margin-bottom: 7px;
+    margin-bottom: 4px;
     color: #28745c;
     font-size: 12px;
     font-weight: 800;
@@ -1188,17 +1188,18 @@
 .client-hero-menu-card strong {
     display: block;
     color: #172033;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 800;
     letter-spacing: -0.03em;
+    line-height: 1.2;
 }
 
 .client-hero-menu-card small {
     display: block;
-    margin-top: 7px;
+    margin-top: 4px;
     color: #5f6b7a;
-    font-size: 14px;
-    line-height: 1.5;
+    font-size: 13px;
+    line-height: 1.35;
 }
 
 /* Al quitar las tarjetas inferiores, damos más protagonismo a la solicitud */
@@ -1219,11 +1220,15 @@
     }
 
     .client-hero-menu-card {
-        padding: 15px;
+        padding: 12px 14px;
     }
 
     .client-hero-menu-card strong {
-        font-size: 17px;
+        font-size: 16px;
+    }
+
+    .client-hero-menu-card small {
+        font-size: 13px;
     }
 }
 
