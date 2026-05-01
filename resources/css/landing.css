@@ -1198,3 +1198,50 @@
     font-weight: 800 !important;
     border-radius: 999px !important;
 }
+
+/* Ajuste de contraste para pastillas en modo oscuro */
+
+.dark .landing-info-box .landing-section-kicker,
+.dark .landing-cta-box .landing-section-kicker {
+    background-color: #a3ebd3 !important;
+    color: #103329 !important;
+    border: 1px solid #8ee3c6;
+    box-shadow: 0 8px 18px rgba(163, 235, 211, 0.12);
+}
+
+.dark .landing-info-box .landing-section-kicker,
+.dark .landing-cta-box .landing-section-kicker,
+.dark .landing-eyebrow {
+    font-weight: 800;
+}
+
+/* Ajuste específico para el hero */
+.dark .landing-eyebrow {
+    background-color: #a3ebd3 !important;
+    color: #103329 !important;
+    border: 1px solid #8ee3c6;
+}
+
+/* Mantener el aviso importante con estilo oscuro */
+.dark .landing-notice-box .landing-section-kicker {
+    background-color: rgba(163, 235, 211, 0.16) !important;
+    color: #a3ebd3 !important;
+    border: 1px solid rgba(163, 235, 211, 0.22);
+    box-shadow: none;
+}
+
+/* Ajuste definitivo de contraste para pastillas */
+
+.landing-section-kicker,
+.dark .landing-section-kicker {
+    background-color: #a3ebd3 !important;
+    color: #103329 !important;
+    border: 1px solid #8ee3c6 !important;
+    font-weight: 800 !important;
+    opacity: 1 !important;
+}
+
+.landing-section-kicker *,
+.dark .landing-section-kicker * {
+    color: #103329 !important;
+}
