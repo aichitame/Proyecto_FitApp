@@ -10,6 +10,7 @@
 
     @vite([
         'resources/css/app.css',
+        'resources/css/landing.css',
         'resources/css/dashboard.css',
         'resources/css/request-wizard.css',
         'resources/js/app.js',
