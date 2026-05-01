@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 @import 'tailwindcss';
 @import '../../vendor/livewire/flux/dist/flux.css';
 
@@ -6,6 +7,21 @@
 @import './auth.css';
 @import './plan-available-mail.css';
 @import './settings.css';
+
+html,
+body,
+button,
+input,
+select,
+textarea,
+.auth-page,
+.auth-page *,
+.auth-card,
+.auth-card *,
+[data-flux-root],
+[data-flux-root] * {
+    font-family: 'Quicksand', sans-serif !important;
+}
 
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
