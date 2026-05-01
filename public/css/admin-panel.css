@@ -1,127 +1,273 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+/* Admin panel dark theme */
 
-/* Fuente general del admin */
-
-html,
-body,
 .fi-body,
 .fi-layout,
-.fi-sidebar,
-.fi-sidebar *,
-.fi-topbar,
-.fi-topbar *,
 .fi-main,
-.fi-main *,
-.fi-modal,
-.fi-modal *,
-.fi-dropdown,
-.fi-dropdown *,
-.fi-btn,
-.fi-input,
-.fi-select-input,
-.fi-ta,
-input,
-select,
-textarea,
-button {
-    font-family: "Quicksand", sans-serif !important;
-}
-
-/* Marca superior: FitApp Admin */
-
-.fi-logo,
-.fi-logo *,
-.fi-sidebar-header,
-.fi-sidebar-header *,
-.fi-topbar-header,
-.fi-topbar-header * {
-    font-family: "Quicksand", sans-serif !important;
-    font-weight: 800 !important;
-    letter-spacing: -0.04em;
-}
-
-/* Fondo general */
-
-.fi-body {
+.fi-page,
+.fi-main-ctn,
+.fi-simple-layout {
     background:
-        radial-gradient(circle at top left, rgba(163, 235, 211, 0.18), transparent 32%),
-        linear-gradient(180deg, #f8fcf9 0%, #eef7fd 100%) !important;
-}
-
-/* Sidebar */
-
-.fi-sidebar {
-    background: rgba(255, 255, 255, 0.78) !important;
-    border-right: 1px solid rgba(217, 229, 221, 0.85) !important;
-    backdrop-filter: blur(14px);
-}
-
-.fi-sidebar-header {
-    border-bottom: 1px solid rgba(217, 229, 221, 0.75) !important;
-}
-
-.fi-sidebar-item-active a,
-.fi-sidebar-item-active button {
-    background: rgba(163, 235, 211, 0.28) !important;
-    color: #28745c !important;
-}
-
-.fi-sidebar-item a:hover,
-.fi-sidebar-item button:hover {
-    background: rgba(163, 235, 211, 0.18) !important;
-    color: #28745c !important;
+        radial-gradient(circle at top left, rgba(163, 235, 211, 0.08), transparent 34%),
+        linear-gradient(180deg, #09090b 0%, #11130f 100%) !important;
+    color: #f8fafc !important;
 }
 
 /* Topbar */
 
 .fi-topbar {
-    background: rgba(255, 255, 255, 0.82) !important;
-    border-bottom: 1px solid rgba(217, 229, 221, 0.75) !important;
-    backdrop-filter: blur(14px);
+    background: rgba(9, 9, 11, 0.96) !important;
+    border-bottom: 1px solid #27272a !important;
+    box-shadow: none !important;
 }
 
-/* Contenido */
-
-.fi-main {
-    max-width: 1180px !important;
+.fi-topbar nav {
+    background: transparent !important;
 }
 
-.fi-page h1 {
-    color: #172033 !important;
-    letter-spacing: -0.04em;
+/* Sidebar */
+
+.fi-sidebar,
+.fi-sidebar-nav,
+.fi-sidebar-header {
+    background: #111113 !important;
+    border-right: 1px solid #27272a !important;
 }
 
-/* Tarjetas y tablas */
+.fi-sidebar {
+    box-shadow: none !important;
+}
+
+.fi-sidebar-header {
+    border-bottom: 1px solid #27272a !important;
+}
+
+.fi-sidebar-header a,
+.fi-sidebar-header span,
+.fi-sidebar-header .fi-logo {
+    color: #f8fafc !important;
+}
+
+/* Sidebar items */
+
+.fi-sidebar-item a,
+.fi-sidebar-item-button {
+    color: #d4d4d8 !important;
+    border-radius: 14px !important;
+}
+
+.fi-sidebar-item a:hover,
+.fi-sidebar-item-button:hover {
+    background: rgba(163, 235, 211, 0.10) !important;
+    color: #a3ebd3 !important;
+}
+
+.fi-sidebar-item.fi-active a,
+.fi-sidebar-item-active a,
+.fi-sidebar-item.fi-active .fi-sidebar-item-button,
+.fi-sidebar-item-active .fi-sidebar-item-button {
+    background: rgba(163, 235, 211, 0.16) !important;
+    color: #a3ebd3 !important;
+}
+
+.fi-sidebar-item-icon,
+.fi-sidebar-item-label {
+    color: inherit !important;
+}
+
+.fi-sidebar-item.fi-active .fi-sidebar-item-icon,
+.fi-sidebar-item-active .fi-sidebar-item-icon,
+.fi-sidebar-item.fi-active .fi-sidebar-item-label,
+.fi-sidebar-item-active .fi-sidebar-item-label {
+    color: #a3ebd3 !important;
+}
+
+/* Page titles and text */
+
+.fi-header-heading,
+.fi-header-subheading,
+.fi-section-header-heading,
+.fi-section-header-description,
+.fi-page h1,
+.fi-page h2,
+.fi-page h3,
+.fi-page p,
+.fi-breadcrumbs,
+.fi-breadcrumbs a {
+    color: #f8fafc !important;
+}
+
+.fi-header-subheading,
+.fi-section-header-description,
+.fi-breadcrumbs {
+    color: #a1a1aa !important;
+}
+
+/* Cards / sections */
 
 .fi-section,
 .fi-wi-widget,
-.fi-ta-ctn {
-    border-radius: 24px !important;
-    border: 1px solid #d9e5dd !important;
-    box-shadow: 0 14px 34px rgba(23, 32, 51, 0.05) !important;
+.fi-ta,
+.fi-in-entry-wrp,
+.fi-fo-field-wrp {
+    background: #18181b !important;
+    border-color: #27272a !important;
+    color: #f8fafc !important;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22) !important;
 }
 
-/* Botones principales */
+.fi-section-content,
+.fi-section-header {
+    background: transparent !important;
+}
 
-.fi-btn-color-primary,
-.fi-ac-btn-action,
-.fi-ta-header-toolbar .fi-btn-color-primary {
-    background-color: #a3ebd3 !important;
+/* Tables */
+
+.fi-ta-header,
+.fi-ta-content,
+.fi-ta-table,
+.fi-ta-row,
+.fi-ta-cell {
+    background: #18181b !important;
+    color: #f8fafc !important;
+    border-color: #27272a !important;
+}
+
+.fi-ta-header-cell,
+.fi-ta-text,
+.fi-ta-column-header,
+.fi-ta-cell {
+    color: #f8fafc !important;
+}
+
+.fi-ta-row:hover {
+    background: #202024 !important;
+}
+
+/* Forms */
+
+.fi-input-wrp,
+.fi-select-input,
+.fi-textarea,
+.fi-input {
+    background: #111827 !important;
+    border-color: #3f3f46 !important;
+    color: #f8fafc !important;
+}
+
+.fi-input-wrp input,
+.fi-input-wrp select,
+.fi-input-wrp textarea,
+.fi-input,
+.fi-select-input,
+.fi-textarea {
+    color: #f8fafc !important;
+}
+
+.fi-input-wrp input::placeholder,
+.fi-input-wrp textarea::placeholder {
+    color: #a1a1aa !important;
+}
+
+.fi-fo-field-wrp-label,
+.fi-fo-field-wrp-label span,
+.fi-fieldset legend,
+.fi-label {
+    color: #f8fafc !important;
+}
+
+.fi-fo-field-wrp-helper-text,
+.fi-fo-field-wrp-error-message {
+    color: #a1a1aa !important;
+}
+
+/* Buttons */
+
+.fi-btn {
+    border-radius: 14px !important;
+}
+
+.fi-btn-color-primary {
+    background: #a3ebd3 !important;
+    color: #103329 !important;
+    border-color: #a3ebd3 !important;
+}
+
+.fi-btn-color-primary:hover {
+    background: #8ee3c6 !important;
     border-color: #8ee3c6 !important;
-    color: #103329 !important;
-    box-shadow: 0 6px 14px rgba(73, 183, 145, 0.16) !important;
 }
 
-.fi-btn-color-primary:hover,
-.fi-ac-btn-action:hover,
-.fi-ta-header-toolbar .fi-btn-color-primary:hover {
-    background-color: #8ee3c6 !important;
-    border-color: #74d5b3 !important;
-    color: #103329 !important;
-    box-shadow: 0 8px 18px rgba(73, 183, 145, 0.20) !important;
+.fi-btn-color-gray {
+    background: #27272a !important;
+    color: #f8fafc !important;
+    border-color: #3f3f46 !important;
 }
 
-.fi-btn-color-primary svg,
-.fi-ac-btn-action svg {
-    color: #103329 !important;
+.fi-btn-color-gray:hover {
+    background: #3f3f46 !important;
+}
+
+/* Search */
+
+.fi-global-search-field,
+.fi-global-search-field input {
+    background: #18181b !important;
+    color: #f8fafc !important;
+    border-color: #27272a !important;
+}
+
+.fi-global-search-field input::placeholder {
+    color: #a1a1aa !important;
+}
+
+/* User menu / dropdowns */
+
+.fi-dropdown-panel,
+.fi-dropdown-list,
+.fi-dropdown-list-item {
+    background: #18181b !important;
+    border-color: #27272a !important;
+    color: #f8fafc !important;
+}
+
+.fi-dropdown-list-item:hover {
+    background: rgba(163, 235, 211, 0.10) !important;
+}
+
+/* Badges */
+
+.fi-badge {
+    border-radius: 999px !important;
+}
+
+/* Icons */
+
+.fi-icon,
+.fi-icon-btn,
+.fi-icon-btn svg {
+    color: inherit !important;
+}
+
+/* Custom dashboard card if any */
+
+.fi-page .welcome-card,
+.fi-page .admin-dashboard-card,
+.fi-page .dashboard-card {
+    background: #18181b !important;
+    color: #f8fafc !important;
+    border: 1px solid #27272a !important;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+    .fi-sidebar {
+        background: #111113 !important;
+    }
+
+    .fi-main {
+        background:
+            radial-gradient(circle at top left, rgba(163, 235, 211, 0.08), transparent 34%),
+            linear-gradient(180deg, #09090b 0%, #11130f 100%) !important;
+    }
 }
