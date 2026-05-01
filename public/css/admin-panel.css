@@ -1,24 +1,14 @@
-/* =========================================================
-   FitApp admin panel theme
-   Base: modo claro
-   Dark: solo cuando Filament aplica html.dark / .dark
-========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 
-/* Base general */
-
-html,
-body,
 .fi-body,
+.fi-body *,
 .fi-layout,
-.fi-main,
-.fi-main-ctn,
+.fi-layout *,
 .fi-page,
-.fi-simple-layout {
-    background:
-        radial-gradient(circle at top left, rgba(163, 235, 211, 0.18), transparent 34%),
-        linear-gradient(180deg, #f8fcf9 0%, #eef7fd 100%) !important;
-    color: #0f172a !important;
+.fi-page * {
+    font-family: 'Quicksand', sans-serif !important;
 }
+
 
 /* Topbar */
 
