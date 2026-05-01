@@ -329,3 +329,93 @@
         font-size: 16px;
     }
 }
+
+/* Ajustes de contraste para el wizard en modo oscuro */
+
+.dark .wizard-page {
+    color: #f8fafc;
+}
+
+.dark .wizard-eyebrow {
+    color: #a3ebd3 !important;
+}
+
+.dark .wizard-title {
+    color: #f8fafc !important;
+}
+
+.dark .wizard-intro {
+    color: #d4d4d8 !important;
+}
+
+.dark .wizard-progress-box {
+    background: #ffffff !important;
+    border-color: #e5e7eb !important;
+    color: #0f172a !important;
+}
+
+.dark .wizard-progress-text {
+    color: #0f172a !important;
+}
+
+.dark .wizard-card {
+    background: #ffffff !important;
+    border-color: #e5e7eb !important;
+    color: #0f172a !important;
+}
+
+.dark .wizard-heading {
+    color: #0f172a !important;
+}
+
+.dark .wizard-description {
+    color: #64748b !important;
+}
+
+.dark .wizard-label {
+    color: #0f172a !important;
+}
+
+.dark .wizard-input,
+.dark .wizard-select,
+.dark .wizard-textarea {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border-color: #d1d5db !important;
+}
+
+.dark .wizard-input::placeholder,
+.dark .wizard-textarea::placeholder {
+    color: #94a3b8 !important;
+}
+
+.dark .wizard-checkbox-card {
+    background: #fafafa !important;
+    border-color: #e5e7eb !important;
+    color: #0f172a !important;
+}
+
+.dark .wizard-actions {
+    border-top-color: #e5e7eb !important;
+}
+
+.dark .wizard-button-secondary {
+    background: #ffffff !important;
+    color: #111827 !important;
+    border-color: #d1d5db !important;
+}
+
+/* Pantalla de solicitud enviada */
+
+.dark .request-sent-card {
+    background-color: #ffffff !important;
+    border-color: #d1d5db !important;
+}
+
+.dark .request-sent-title {
+    color: #111827 !important;
+}
+
+.dark .request-sent-text {
+    color: #374151 !important;
+}
