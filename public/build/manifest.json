@@ -1,10 +1,6 @@
 {
-  "public/images/sport-food.jpg": {
-    "file": "assets/sport-food-Cniegw2Y.jpg",
-    "src": "public/images/sport-food.jpg"
-  },
   "resources/css/app.css": {
-    "file": "assets/app-CIz_CakI.css",
+    "file": "assets/app-DgVBknbN.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
