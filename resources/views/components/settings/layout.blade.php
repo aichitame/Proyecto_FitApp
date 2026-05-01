@@ -4,6 +4,9 @@
             <p class="settings-eyebrow">Área privada de cliente</p>
             <h1 class="settings-title">Configuración</h1>
             <p class="settings-intro">Gestiona tu perfil y la configuración de tu cuenta.</p>
+            <a href="{{ route('dashboard') }}" class="client-back-button">
+                ← Volver al panel
+            </a>
         </div>
 
         <div class="settings-card">

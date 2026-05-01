@@ -7,6 +7,10 @@
                 <p class="wizard-intro">
                     Completa tu valoración inicial paso a paso. La información que indiques nos ayudará a preparar tu plan orientativo.
                 </p>
+
+                <a href="{{ route('dashboard') }}" class="client-back-button">
+                    ← Volver al panel
+                </a>
             </div>
 
             <div class="wizard-progress-box">

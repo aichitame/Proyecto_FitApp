@@ -196,12 +196,16 @@
 
     <section class="landing-info-section">
         <div class="landing-notice-box">
-            <div class="landing-notice-mark">
-                !
-            </div>
+            <div class="landing-notice-content">
+                <div class="landing-notice-header">
+                    <div class="landing-notice-mark">
+                        !
+                    </div>
 
-            <div>
-                <p class="landing-section-kicker">Aviso importante</p>
+                    <p class="landing-section-kicker">
+                        Aviso importante
+                    </p>
+                </div>
 
                 <h2 class="landing-notice-title">
                     Servicio informativo y orientativo

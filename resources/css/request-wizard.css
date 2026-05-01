@@ -419,3 +419,45 @@
 .dark .request-sent-text {
     color: #374151 !important;
 }
+
+/* Botón volver al panel en nueva solicitud */
+
+.client-back-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    margin: 1.25rem 0 0;
+    padding: 0.8rem 1.1rem;
+    border-radius: 999px;
+    background: rgba(163, 235, 211, 0.16);
+    border: 1px solid rgba(163, 235, 211, 0.45);
+    color: #28745c;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.client-back-button:hover {
+    background: rgba(163, 235, 211, 0.24);
+    color: #103329;
+    text-decoration: none;
+}
+
+.dark .client-back-button {
+    color: #a3ebd3;
+    background: rgba(163, 235, 211, 0.12);
+    border-color: rgba(163, 235, 211, 0.35);
+}
+
+.dark .client-back-button:hover {
+    color: #103329;
+    background: #a3ebd3;
+}
+
+@media (max-width: 640px) {
+    .client-back-button {
+        width: 100%;
+        margin-top: 1rem;
+    }
+}
