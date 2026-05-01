@@ -1,23 +1,32 @@
-/* Admin panel dark theme */
+/* =========================================================
+   FitApp admin panel theme
+   Base: modo claro
+   Dark: solo cuando Filament aplica html.dark / .dark
+========================================================= */
 
+/* Base general */
+
+html,
+body,
 .fi-body,
 .fi-layout,
 .fi-main,
-.fi-page,
 .fi-main-ctn,
+.fi-page,
 .fi-simple-layout {
     background:
-        radial-gradient(circle at top left, rgba(163, 235, 211, 0.08), transparent 34%),
-        linear-gradient(180deg, #09090b 0%, #11130f 100%) !important;
-    color: #f8fafc !important;
+        radial-gradient(circle at top left, rgba(163, 235, 211, 0.18), transparent 34%),
+        linear-gradient(180deg, #f8fcf9 0%, #eef7fd 100%) !important;
+    color: #0f172a !important;
 }
 
 /* Topbar */
 
 .fi-topbar {
-    background: rgba(9, 9, 11, 0.96) !important;
-    border-bottom: 1px solid #27272a !important;
+    background: rgba(255, 255, 255, 0.94) !important;
+    border-bottom: 1px solid #e5e7eb !important;
     box-shadow: none !important;
+    backdrop-filter: blur(12px);
 }
 
 .fi-topbar nav {
@@ -29,44 +38,52 @@
 .fi-sidebar,
 .fi-sidebar-nav,
 .fi-sidebar-header {
-    background: #111113 !important;
-    border-right: 1px solid #27272a !important;
+    background: #ffffff !important;
+    border-color: #e5e7eb !important;
 }
 
 .fi-sidebar {
+    border-right: 1px solid #e5e7eb !important;
     box-shadow: none !important;
 }
 
 .fi-sidebar-header {
-    border-bottom: 1px solid #27272a !important;
+    border-bottom: 1px solid #e5e7eb !important;
 }
 
 .fi-sidebar-header a,
 .fi-sidebar-header span,
 .fi-sidebar-header .fi-logo {
-    color: #f8fafc !important;
+    color: #0f172a !important;
 }
 
 /* Sidebar items */
 
 .fi-sidebar-item a,
-.fi-sidebar-item-button {
-    color: #d4d4d8 !important;
+.fi-sidebar-item-button,
+.fi-sidebar-nav-item a,
+.fi-sidebar-nav-item button {
+    color: #334155 !important;
     border-radius: 14px !important;
 }
 
 .fi-sidebar-item a:hover,
-.fi-sidebar-item-button:hover {
-    background: rgba(163, 235, 211, 0.10) !important;
-    color: #a3ebd3 !important;
+.fi-sidebar-item-button:hover,
+.fi-sidebar-nav-item a:hover,
+.fi-sidebar-nav-item button:hover {
+    background: #f1f5f9 !important;
+    color: #0f172a !important;
 }
 
 .fi-sidebar-item.fi-active a,
 .fi-sidebar-item-active a,
 .fi-sidebar-item.fi-active .fi-sidebar-item-button,
-.fi-sidebar-item-active .fi-sidebar-item-button {
-    background: rgba(163, 235, 211, 0.16) !important;
-    color: #a3ebd3 !important;
+.fi-sidebar-item-active .fi-sidebar-item-button,
+.fi-sidebar a[aria-current="page"],
+.fi-sidebar button[aria-current="page"] {
+    background: #ecfdf5 !important;
+    color: #166534 !important;
+    border: 1px solid #ccefe2 !important;
 }
 
 .fi-sidebar-item-icon,
@@ -74,14 +91,7 @@
     color: inherit !important;
 }
 
-.fi-sidebar-item.fi-active .fi-sidebar-item-icon,
-.fi-sidebar-item-active .fi-sidebar-item-icon,
-.fi-sidebar-item.fi-active .fi-sidebar-item-label,
-.fi-sidebar-item-active .fi-sidebar-item-label {
-    color: #a3ebd3 !important;
-}
-
-/* Page titles and text */
+/* Textos de página */
 
 .fi-header-heading,
 .fi-header-subheading,
@@ -92,27 +102,35 @@
 .fi-page h3,
 .fi-page p,
 .fi-breadcrumbs,
-.fi-breadcrumbs a {
-    color: #f8fafc !important;
+.fi-breadcrumbs a,
+.fi-page-heading,
+.fi-page-header-heading,
+.fi-ta-header-heading {
+    color: #0f172a !important;
 }
 
 .fi-header-subheading,
 .fi-section-header-description,
-.fi-breadcrumbs {
-    color: #a1a1aa !important;
+.fi-breadcrumbs,
+.fi-breadcrumbs a {
+    color: #64748b !important;
 }
 
-/* Cards / sections */
+/* Cards / sections / widgets */
 
 .fi-section,
+.fi-card,
 .fi-wi-widget,
 .fi-ta,
+.fi-ta-ctn,
 .fi-in-entry-wrp,
-.fi-fo-field-wrp {
-    background: #18181b !important;
-    border-color: #27272a !important;
-    color: #f8fafc !important;
-    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22) !important;
+.fi-fo-field-wrp,
+.fi-in-section,
+.fi-simple-main {
+    background: #ffffff !important;
+    border-color: #e5e7eb !important;
+    color: #0f172a !important;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06) !important;
 }
 
 .fi-section-content,
@@ -126,21 +144,24 @@
 .fi-ta-content,
 .fi-ta-table,
 .fi-ta-row,
-.fi-ta-cell {
-    background: #18181b !important;
-    color: #f8fafc !important;
-    border-color: #27272a !important;
+.fi-ta-cell,
+.fi-ta-empty-state {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border-color: #e5e7eb !important;
 }
 
 .fi-ta-header-cell,
 .fi-ta-text,
 .fi-ta-column-header,
-.fi-ta-cell {
-    color: #f8fafc !important;
+.fi-ta-cell,
+.fi-ta-row,
+.fi-ta-row * {
+    color: #0f172a !important;
 }
 
 .fi-ta-row:hover {
-    background: #202024 !important;
+    background: #f8fafc !important;
 }
 
 /* Forms */
@@ -149,9 +170,9 @@
 .fi-select-input,
 .fi-textarea,
 .fi-input {
-    background: #111827 !important;
-    border-color: #3f3f46 !important;
-    color: #f8fafc !important;
+    background: #ffffff !important;
+    border-color: #d1d5db !important;
+    color: #0f172a !important;
 }
 
 .fi-input-wrp input,
@@ -159,25 +180,36 @@
 .fi-input-wrp textarea,
 .fi-input,
 .fi-select-input,
-.fi-textarea {
-    color: #f8fafc !important;
+.fi-textarea,
+.fi-topbar input {
+    color: #0f172a !important;
 }
 
 .fi-input-wrp input::placeholder,
-.fi-input-wrp textarea::placeholder {
-    color: #a1a1aa !important;
+.fi-input-wrp textarea::placeholder,
+.fi-topbar input::placeholder {
+    color: #94a3b8 !important;
+}
+
+.fi-input-wrp:focus-within,
+.fi-select-input:focus-within {
+    border-color: #8ee3c6 !important;
+    box-shadow: 0 0 0 3px rgba(163, 235, 211, 0.35) !important;
 }
 
 .fi-fo-field-wrp-label,
 .fi-fo-field-wrp-label span,
 .fi-fieldset legend,
 .fi-label {
-    color: #f8fafc !important;
+    color: #0f172a !important;
 }
 
-.fi-fo-field-wrp-helper-text,
+.fi-fo-field-wrp-helper-text {
+    color: #64748b !important;
+}
+
 .fi-fo-field-wrp-error-message {
-    color: #a1a1aa !important;
+    color: #dc2626 !important;
 }
 
 /* Buttons */
@@ -198,26 +230,26 @@
 }
 
 .fi-btn-color-gray {
-    background: #27272a !important;
-    color: #f8fafc !important;
-    border-color: #3f3f46 !important;
+    background: #ffffff !important;
+    color: #334155 !important;
+    border-color: #d1d5db !important;
 }
 
 .fi-btn-color-gray:hover {
-    background: #3f3f46 !important;
+    background: #f1f5f9 !important;
 }
 
 /* Search */
 
 .fi-global-search-field,
 .fi-global-search-field input {
-    background: #18181b !important;
-    color: #f8fafc !important;
-    border-color: #27272a !important;
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border-color: #e5e7eb !important;
 }
 
 .fi-global-search-field input::placeholder {
-    color: #a1a1aa !important;
+    color: #94a3b8 !important;
 }
 
 /* User menu / dropdowns */
@@ -225,13 +257,13 @@
 .fi-dropdown-panel,
 .fi-dropdown-list,
 .fi-dropdown-list-item {
-    background: #18181b !important;
-    border-color: #27272a !important;
-    color: #f8fafc !important;
+    background: #ffffff !important;
+    border-color: #e5e7eb !important;
+    color: #0f172a !important;
 }
 
 .fi-dropdown-list-item:hover {
-    background: rgba(163, 235, 211, 0.10) !important;
+    background: #f1f5f9 !important;
 }
 
 /* Badges */
@@ -248,26 +280,368 @@
     color: inherit !important;
 }
 
-/* Custom dashboard card if any */
+/* Paginación */
+
+.fi-pagination,
+.fi-pagination * {
+    color: #334155 !important;
+}
+
+/* Dashboard custom card */
 
 .fi-page .welcome-card,
 .fi-page .admin-dashboard-card,
 .fi-page .dashboard-card {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06) !important;
+}
+
+/* =========================================================
+   Modo oscuro real
+========================================================= */
+
+html.dark,
+html.dark body,
+html.dark .fi-body,
+html.dark .fi-layout,
+html.dark .fi-main,
+html.dark .fi-main-ctn,
+html.dark .fi-page,
+html.dark .fi-simple-layout,
+.dark .fi-body,
+.dark .fi-layout,
+.dark .fi-main,
+.dark .fi-main-ctn,
+.dark .fi-page,
+.dark .fi-simple-layout {
+    background:
+        radial-gradient(circle at top left, rgba(163, 235, 211, 0.08), transparent 34%),
+        linear-gradient(180deg, #09090b 0%, #11130f 100%) !important;
+    color: #f8fafc !important;
+}
+
+/* Topbar oscuro */
+
+html.dark .fi-topbar,
+.dark .fi-topbar {
+    background: rgba(9, 9, 11, 0.96) !important;
+    border-bottom: 1px solid #27272a !important;
+    box-shadow: none !important;
+}
+
+html.dark .fi-topbar nav,
+.dark .fi-topbar nav {
+    background: transparent !important;
+}
+
+/* Sidebar oscuro */
+
+html.dark .fi-sidebar,
+html.dark .fi-sidebar-nav,
+html.dark .fi-sidebar-header,
+.dark .fi-sidebar,
+.dark .fi-sidebar-nav,
+.dark .fi-sidebar-header {
+    background: #111113 !important;
+    border-color: #27272a !important;
+}
+
+html.dark .fi-sidebar,
+.dark .fi-sidebar {
+    border-right: 1px solid #27272a !important;
+    box-shadow: none !important;
+}
+
+html.dark .fi-sidebar-header,
+.dark .fi-sidebar-header {
+    border-bottom: 1px solid #27272a !important;
+}
+
+html.dark .fi-sidebar-header a,
+html.dark .fi-sidebar-header span,
+html.dark .fi-sidebar-header .fi-logo,
+.dark .fi-sidebar-header a,
+.dark .fi-sidebar-header span,
+.dark .fi-sidebar-header .fi-logo {
+    color: #f8fafc !important;
+}
+
+/* Sidebar items oscuro */
+
+html.dark .fi-sidebar-item a,
+html.dark .fi-sidebar-item-button,
+html.dark .fi-sidebar-nav-item a,
+html.dark .fi-sidebar-nav-item button,
+.dark .fi-sidebar-item a,
+.dark .fi-sidebar-item-button,
+.dark .fi-sidebar-nav-item a,
+.dark .fi-sidebar-nav-item button {
+    color: #d4d4d8 !important;
+}
+
+html.dark .fi-sidebar-item a:hover,
+html.dark .fi-sidebar-item-button:hover,
+html.dark .fi-sidebar-nav-item a:hover,
+html.dark .fi-sidebar-nav-item button:hover,
+.dark .fi-sidebar-item a:hover,
+.dark .fi-sidebar-item-button:hover,
+.dark .fi-sidebar-nav-item a:hover,
+.dark .fi-sidebar-nav-item button:hover {
+    background: rgba(163, 235, 211, 0.10) !important;
+    color: #a3ebd3 !important;
+}
+
+html.dark .fi-sidebar-item.fi-active a,
+html.dark .fi-sidebar-item-active a,
+html.dark .fi-sidebar-item.fi-active .fi-sidebar-item-button,
+html.dark .fi-sidebar-item-active .fi-sidebar-item-button,
+html.dark .fi-sidebar a[aria-current="page"],
+html.dark .fi-sidebar button[aria-current="page"],
+.dark .fi-sidebar-item.fi-active a,
+.dark .fi-sidebar-item-active a,
+.dark .fi-sidebar-item.fi-active .fi-sidebar-item-button,
+.dark .fi-sidebar-item-active .fi-sidebar-item-button,
+.dark .fi-sidebar a[aria-current="page"],
+.dark .fi-sidebar button[aria-current="page"] {
+    background: rgba(163, 235, 211, 0.16) !important;
+    color: #a3ebd3 !important;
+    border: 1px solid rgba(163, 235, 211, 0.24) !important;
+}
+
+/* Textos oscuros */
+
+html.dark .fi-header-heading,
+html.dark .fi-section-header-heading,
+html.dark .fi-page h1,
+html.dark .fi-page h2,
+html.dark .fi-page h3,
+html.dark .fi-breadcrumbs,
+html.dark .fi-breadcrumbs a,
+html.dark .fi-page-heading,
+html.dark .fi-page-header-heading,
+html.dark .fi-ta-header-heading,
+.dark .fi-header-heading,
+.dark .fi-section-header-heading,
+.dark .fi-page h1,
+.dark .fi-page h2,
+.dark .fi-page h3,
+.dark .fi-breadcrumbs,
+.dark .fi-breadcrumbs a,
+.dark .fi-page-heading,
+.dark .fi-page-header-heading,
+.dark .fi-ta-header-heading {
+    color: #f8fafc !important;
+}
+
+html.dark .fi-header-subheading,
+html.dark .fi-section-header-description,
+html.dark .fi-breadcrumbs,
+html.dark .fi-breadcrumbs a,
+html.dark .fi-page p,
+.dark .fi-header-subheading,
+.dark .fi-section-header-description,
+.dark .fi-breadcrumbs,
+.dark .fi-breadcrumbs a,
+.dark .fi-page p {
+    color: #d4d4d8 !important;
+}
+
+/* Cards / sections / widgets oscuro */
+
+html.dark .fi-section,
+html.dark .fi-card,
+html.dark .fi-wi-widget,
+html.dark .fi-ta,
+html.dark .fi-ta-ctn,
+html.dark .fi-in-entry-wrp,
+html.dark .fi-fo-field-wrp,
+html.dark .fi-in-section,
+html.dark .fi-simple-main,
+.dark .fi-section,
+.dark .fi-card,
+.dark .fi-wi-widget,
+.dark .fi-ta,
+.dark .fi-ta-ctn,
+.dark .fi-in-entry-wrp,
+.dark .fi-fo-field-wrp,
+.dark .fi-in-section,
+.dark .fi-simple-main {
+    background: #18181b !important;
+    border-color: #27272a !important;
+    color: #f8fafc !important;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22) !important;
+}
+
+html.dark .fi-section-content,
+html.dark .fi-section-header,
+.dark .fi-section-content,
+.dark .fi-section-header {
+    background: transparent !important;
+}
+
+/* Tables oscuro */
+
+html.dark .fi-ta-header,
+html.dark .fi-ta-content,
+html.dark .fi-ta-table,
+html.dark .fi-ta-row,
+html.dark .fi-ta-cell,
+html.dark .fi-ta-empty-state,
+.dark .fi-ta-header,
+.dark .fi-ta-content,
+.dark .fi-ta-table,
+.dark .fi-ta-row,
+.dark .fi-ta-cell,
+.dark .fi-ta-empty-state {
+    background: #18181b !important;
+    color: #f8fafc !important;
+    border-color: #27272a !important;
+}
+
+html.dark .fi-ta-header-cell,
+html.dark .fi-ta-text,
+html.dark .fi-ta-column-header,
+html.dark .fi-ta-cell,
+html.dark .fi-ta-row,
+html.dark .fi-ta-row *,
+.dark .fi-ta-header-cell,
+.dark .fi-ta-text,
+.dark .fi-ta-column-header,
+.dark .fi-ta-cell,
+.dark .fi-ta-row,
+.dark .fi-ta-row * {
+    color: #f8fafc !important;
+}
+
+html.dark .fi-ta-row:hover,
+.dark .fi-ta-row:hover {
+    background: #202024 !important;
+}
+
+/* Forms oscuro */
+
+html.dark .fi-input-wrp,
+html.dark .fi-select-input,
+html.dark .fi-textarea,
+html.dark .fi-input,
+.dark .fi-input-wrp,
+.dark .fi-select-input,
+.dark .fi-textarea,
+.dark .fi-input {
+    background: #111827 !important;
+    border-color: #3f3f46 !important;
+    color: #f8fafc !important;
+}
+
+html.dark .fi-input-wrp input,
+html.dark .fi-input-wrp select,
+html.dark .fi-input-wrp textarea,
+html.dark .fi-input,
+html.dark .fi-select-input,
+html.dark .fi-textarea,
+html.dark .fi-topbar input,
+.dark .fi-input-wrp input,
+.dark .fi-input-wrp select,
+.dark .fi-input-wrp textarea,
+.dark .fi-input,
+.dark .fi-select-input,
+.dark .fi-textarea,
+.dark .fi-topbar input {
+    color: #f8fafc !important;
+}
+
+html.dark .fi-input-wrp input::placeholder,
+html.dark .fi-input-wrp textarea::placeholder,
+html.dark .fi-topbar input::placeholder,
+.dark .fi-input-wrp input::placeholder,
+.dark .fi-input-wrp textarea::placeholder,
+.dark .fi-topbar input::placeholder {
+    color: #a1a1aa !important;
+}
+
+html.dark .fi-input-wrp:focus-within,
+html.dark .fi-select-input:focus-within,
+.dark .fi-input-wrp:focus-within,
+.dark .fi-select-input:focus-within {
+    border-color: #8ee3c6 !important;
+    box-shadow: 0 0 0 3px rgba(163, 235, 211, 0.22) !important;
+}
+
+html.dark .fi-fo-field-wrp-label,
+html.dark .fi-fo-field-wrp-label span,
+html.dark .fi-fieldset legend,
+html.dark .fi-label,
+.dark .fi-fo-field-wrp-label,
+.dark .fi-fo-field-wrp-label span,
+.dark .fi-fieldset legend,
+.dark .fi-label {
+    color: #f8fafc !important;
+}
+
+html.dark .fi-fo-field-wrp-helper-text,
+.dark .fi-fo-field-wrp-helper-text {
+    color: #a1a1aa !important;
+}
+
+/* Buttons oscuro */
+
+html.dark .fi-btn-color-gray,
+.dark .fi-btn-color-gray {
+    background: #27272a !important;
+    color: #f8fafc !important;
+    border-color: #3f3f46 !important;
+}
+
+html.dark .fi-btn-color-gray:hover,
+.dark .fi-btn-color-gray:hover {
+    background: #3f3f46 !important;
+}
+
+/* Search oscuro */
+
+html.dark .fi-global-search-field,
+html.dark .fi-global-search-field input,
+.dark .fi-global-search-field,
+.dark .fi-global-search-field input {
+    background: #18181b !important;
+    color: #f8fafc !important;
+    border-color: #27272a !important;
+}
+
+html.dark .fi-global-search-field input::placeholder,
+.dark .fi-global-search-field input::placeholder {
+    color: #a1a1aa !important;
+}
+
+/* Dropdowns oscuro */
+
+html.dark .fi-dropdown-panel,
+html.dark .fi-dropdown-list,
+html.dark .fi-dropdown-list-item,
+.dark .fi-dropdown-panel,
+.dark .fi-dropdown-list,
+.dark .fi-dropdown-list-item {
+    background: #18181b !important;
+    border-color: #27272a !important;
+    color: #f8fafc !important;
+}
+
+html.dark .fi-dropdown-list-item:hover,
+.dark .fi-dropdown-list-item:hover {
+    background: rgba(163, 235, 211, 0.10) !important;
+}
+
+/* Dashboard custom card oscuro */
+
+html.dark .fi-page .welcome-card,
+html.dark .fi-page .admin-dashboard-card,
+html.dark .fi-page .dashboard-card,
+.dark .fi-page .welcome-card,
+.dark .fi-page .admin-dashboard-card,
+.dark .fi-page .dashboard-card {
     background: #18181b !important;
     color: #f8fafc !important;
     border: 1px solid #27272a !important;
-}
-
-/* Mobile */
-
-@media (max-width: 768px) {
-    .fi-sidebar {
-        background: #111113 !important;
-    }
-
-    .fi-main {
-        background:
-            radial-gradient(circle at top left, rgba(163, 235, 211, 0.08), transparent 34%),
-            linear-gradient(180deg, #09090b 0%, #11130f 100%) !important;
-    }
 }
