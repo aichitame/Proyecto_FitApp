@@ -18,7 +18,7 @@
                 </div>
             </div>
 
-            <p class="client-panel-subtitle client-panel-subtitle-full client-plan-subtitle">
+            <p class="client-plan-intro">
                 Aquí puedes consultar el último plan publicado asociado a tu solicitud #{{ $clientRequest->id }}.
             </p>
         </div>
@@ -47,7 +47,7 @@
 
             <div class="client-plan-card-actions">
                 <a href="{{ route('client.request.show', ['requestId' => $clientRequest->id]) }}"
-            class="landing-button landing-button-secondary">
+            class="landing-button landing-button-primary">
                 Ver solicitud asociada
                 </a>
             </div>

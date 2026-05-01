@@ -267,8 +267,8 @@
 .client-plan-card-actions {
     display: flex;
     margin-top: 1.25rem;
-    padding-top: 1.25rem;
-    border-top: 1px solid #e5e7eb;
+    padding-top: 0;
+    border-top: 0;
 }
 
 .client-plan-card-actions .landing-button {
@@ -808,4 +808,448 @@
 
 .dark .client-request-summary-actions {
     border-top-color: #3f3f46;
+}
+
+/* Header del área privada de cliente */
+
+.client-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.client-header-logout-form {
+    margin: 0;
+}
+
+.client-header-link {
+    min-width: 150px;
+}
+
+.client-header-menu {
+    position: relative;
+}
+
+.client-header-menu-button {
+    min-height: 46px;
+    padding: 12px 18px;
+    border: 1px solid #d9e5dd;
+    border-radius: 14px;
+    background: #ffffff;
+    color: #172033;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    list-style: none;
+    box-shadow: 0 6px 14px rgba(73, 183, 145, 0.08);
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.client-header-menu-button::-webkit-details-marker {
+    display: none;
+}
+
+.client-header-menu-button::marker {
+    content: "";
+}
+
+.client-header-menu-button:hover {
+    transform: translateY(-1px);
+    background-color: #f3faf6;
+    color: #28745c;
+    border-color: #a3ebd3;
+    box-shadow: 0 8px 18px rgba(73, 183, 145, 0.14);
+}
+
+.client-header-menu-icon {
+    width: 18px;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.client-header-menu-icon span {
+    height: 2px;
+    border-radius: 999px;
+    background: currentColor;
+}
+
+.client-header-menu-panel {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    z-index: 80;
+    width: 260px;
+    padding: 10px;
+    border: 1px solid #d9e5dd;
+    border-radius: 22px;
+    background: #ffffff;
+    box-shadow: 0 20px 50px rgba(23, 32, 51, 0.14);
+}
+
+.client-header-menu-link {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border: 0;
+    border-radius: 15px;
+    padding: 12px 14px;
+    background: transparent;
+    color: #475467;
+    text-align: left;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.client-header-menu-link:hover {
+    background: rgba(163, 235, 211, 0.18);
+    color: #28745c;
+    text-decoration: none;
+}
+
+.client-header-menu-divider {
+    height: 1px;
+    margin: 8px 0;
+    background: #d9e5dd;
+}
+
+.client-header-menu-logout {
+    color: #991b1b;
+}
+
+.client-header-menu-logout:hover {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+@media (max-width: 900px) {
+    .client-header-actions {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .client-header-link {
+        flex: 1;
+        min-width: 150px;
+    }
+
+    .client-header-menu {
+        flex: 1;
+    }
+
+    .client-header-menu-button {
+        width: 100%;
+    }
+
+    .client-header-menu-panel {
+        left: 0;
+        right: 0;
+        width: 100%;
+    }
+}
+
+@media (max-width: 640px) {
+    .client-header-link {
+        display: none;
+    }
+
+    .client-header-menu {
+        width: 100%;
+    }
+
+    .client-header-menu-button {
+        width: 100%;
+        min-height: 44px;
+    }
+}
+
+/* Header superior del dashboard */
+
+.client-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.client-header-logout-form {
+    margin: 0;
+}
+
+.client-header-link {
+    min-width: 160px;
+}
+
+/* Menú hamburguesa dentro del hero */
+
+.client-hero-menu {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.client-hero-menu-button {
+    min-height: 48px;
+    padding: 12px 18px;
+    border: 1px solid #d9e5dd;
+    border-radius: 16px;
+    background: #ffffff;
+    color: #172033;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    list-style: none;
+    box-shadow: 0 10px 24px rgba(23, 32, 51, 0.08);
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.client-hero-menu-button::-webkit-details-marker {
+    display: none;
+}
+
+.client-hero-menu-button::marker {
+    content: "";
+}
+
+.client-hero-menu-button:hover {
+    transform: translateY(-1px);
+    background-color: #f3faf6;
+    color: #28745c;
+    border-color: #a3ebd3;
+    box-shadow: 0 14px 28px rgba(73, 183, 145, 0.14);
+}
+
+.client-hero-menu-icon {
+    width: 18px;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.client-hero-menu-icon span {
+    height: 2px;
+    border-radius: 999px;
+    background: currentColor;
+}
+
+.client-hero-menu-panel {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    z-index: 80;
+    width: 260px;
+    padding: 10px;
+    border: 1px solid #d9e5dd;
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow: 0 24px 60px rgba(23, 32, 51, 0.16);
+}
+
+.client-hero-menu-link {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border: 0;
+    border-radius: 14px;
+    padding: 12px 14px;
+    background: transparent;
+    color: #475467;
+    text-align: left;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.client-hero-menu-link:hover {
+    background: rgba(163, 235, 211, 0.18);
+    color: #28745c;
+    text-decoration: none;
+}
+
+/* Pequeño ajuste del topbar del hero */
+
+.client-panel-topbar {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+    .client-header-actions {
+        gap: 10px;
+    }
+
+    .client-header-link {
+        min-width: 140px;
+    }
+
+    .client-panel-topbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .client-hero-menu {
+        width: 100%;
+    }
+
+    .client-hero-menu-button {
+        width: 100%;
+    }
+
+    .client-hero-menu-panel {
+        left: 0;
+        right: 0;
+        width: 100%;
+    }
+}
+
+@media (max-width: 640px) {
+    .client-header-actions {
+        width: 100%;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+    }
+
+    .client-header-link {
+        min-width: auto;
+    }
+}
+
+/* Menú hamburguesa del dashboard como panel de acciones */
+
+.client-hero-menu-panel-large {
+    width: 520px;
+    padding: 14px;
+}
+
+.client-hero-menu-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.client-hero-menu-card {
+    display: block;
+    padding: 16px;
+    border: 1px solid #d9e5dd;
+    border-radius: 18px;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(248, 252, 249, 0.94));
+    color: #172033;
+    text-decoration: none;
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.client-hero-menu-card:hover {
+    transform: translateY(-1px);
+    border-color: #a3ebd3;
+    box-shadow: 0 12px 26px rgba(23, 32, 51, 0.08);
+    text-decoration: none;
+}
+
+.client-hero-menu-card span {
+    display: block;
+    margin-bottom: 7px;
+    color: #28745c;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.client-hero-menu-card strong {
+    display: block;
+    color: #172033;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+}
+
+.client-hero-menu-card small {
+    display: block;
+    margin-top: 7px;
+    color: #5f6b7a;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Al quitar las tarjetas inferiores, damos más protagonismo a la solicitud */
+
+.client-panel-status-card {
+    margin-top: 34px;
+}
+
+.client-panel-history {
+    margin-top: 34px;
+}
+
+/* Responsive */
+
+@media (max-width: 700px) {
+    .client-hero-menu-panel-large {
+        width: 100%;
+    }
+
+    .client-hero-menu-card {
+        padding: 15px;
+    }
+
+    .client-hero-menu-card strong {
+        font-size: 17px;
+    }
+}
+
+#solicitud,
+#historial {
+    scroll-margin-top: 120px;
+}
+
+/* Página de plan orientativo */
+
+.client-plan-intro {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 18px;
+    color: #475467;
+    font-size: 20px;
+    line-height: 1.65;
+}
+
+@media (max-width: 640px) {
+    .client-plan-intro {
+        font-size: 17px;
+        line-height: 1.6;
+    }
+}
+
+.client-panel-status-actions {
+    margin-top: 22px;
 }

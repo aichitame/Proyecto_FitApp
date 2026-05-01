@@ -21,17 +21,37 @@
         <div class="landing-header-inner">
             <a href="{{ route('home') }}" class="landing-brand">FitApp</a>
 
-            <nav class="landing-nav {{ auth()->check() ? 'landing-nav-auth' : '' }}">
-                <a href="{{ route('vision') }}" class="landing-nav-link">Nuestra visión</a>
-                <a href="{{ route('como-funciona') }}" class="landing-nav-link">Cómo funciona</a>
-                <a href="{{ route('contacto') }}" class="landing-nav-link">Contacto</a>
+            @if (trim($__env->yieldContent('header_actions')))
+                @yield('header_actions')
+            @elseif (auth()->check())
+                <div class="client-header-actions">
+                    <a href="{{ route('dashboard') }}" class="landing-button landing-button-secondary client-header-link">
+                        Volver al panel
+                    </a>
 
-                @guest
-                    <a href="{{ route('admin.login') }}" class="landing-button landing-button-secondary">Acceso admin</a>
+                    <form method="POST" action="{{ route('logout') }}" class="client-header-logout-form">
+                        @csrf
 
-                    <a href="{{ route('login') }}" class="landing-button landing-button-primary">Acceso cliente</a>
-                @endguest
-            </nav>
+                        <button type="submit" class="landing-button landing-button-secondary client-header-link">
+                            Cerrar sesión
+                        </button>
+                    </form>
+                </div>
+            @else
+                <nav class="landing-nav">
+                    <a href="{{ route('vision') }}" class="landing-nav-link">Nuestra visión</a>
+                    <a href="{{ route('como-funciona') }}" class="landing-nav-link">Cómo funciona</a>
+                    <a href="{{ route('contacto') }}" class="landing-nav-link">Contacto</a>
+
+                    <a href="{{ route('admin.login') }}" class="landing-button landing-button-secondary">
+                        Acceso admin
+                    </a>
+
+                    <a href="{{ route('login') }}" class="landing-button landing-button-primary">
+                        Acceso cliente
+                    </a>
+                </nav>
+            @endif
         </div>
     </header>
 
@@ -42,8 +62,8 @@
     <footer class="landing-footer">
         <div class="landing-footer-inner">
             <p class="landing-footer-text">
-                    Planificación nutricional y deportiva orientativa. No constituye una herramienta médica ni sustituye el asesoramiento, diagnóstico o tratamiento de profesionales sanitarios.
-                </p>
+                Planificación nutricional y deportiva orientativa. No constituye una herramienta médica ni sustituye el asesoramiento, diagnóstico o tratamiento de profesionales sanitarios.
+            </p>
 
             <div class="landing-footer-legal-links">
                 <a href="#">Aviso legal</a>
