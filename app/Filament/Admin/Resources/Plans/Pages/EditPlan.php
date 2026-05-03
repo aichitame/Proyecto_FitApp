@@ -9,6 +9,7 @@ use App\Models\RequestNotification;
 use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class EditPlan extends EditRecord
@@ -45,31 +46,52 @@ class EditPlan extends EditRecord
             $clientRequest &&
             ! $this->wasPublished &&
             $plan->status === 'published'
-        ){
-            try {
-                Mail::to($clientRequest->user->email)
-                    ->send(new PlanAvailableMail($clientRequest, $plan));
+        ) {
+            $email = $clientRequest->user?->email;
+            $clientRequestId = $clientRequest->id;
+            $planId = $plan->id;
+            $userId = Auth::id();
 
-                RequestNotification::create([
-                    'client_request_id' => $clientRequest->id,
-                    'type' => 'plan_available',
-                    'status' => 'sent',
-                    'notified_at' => now(),
-                    'attempts' => 1,
-                    'error_message' => null,
-                    'sent_by_user_id' => Auth::id(),
-                ]);
-            } catch (\Throwable $e) {
-                RequestNotification::create([
-                    'client_request_id' => $clientRequest->id,
-                    'type' => 'plan_available',
-                    'status' => 'failed',
-                    'notified_at' => null,
-                    'attempts' => 1,
-                    'error_message' => $e->getMessage(),
-                    'sent_by_user_id' => Auth::id(),
-                ]);
-            }
+            dispatch(function () use ($email, $clientRequestId, $planId, $userId) {
+                $clientRequest = ClientRequest::find($clientRequestId);
+                $plan = \App\Models\Plan::find($planId);
+
+                if (! $clientRequest || ! $plan || ! $email) {
+                    return;
+                }
+
+                try {
+                    Mail::to($email)
+                        ->send(new PlanAvailableMail($clientRequest, $plan));
+
+                    RequestNotification::create([
+                        'client_request_id' => $clientRequest->id,
+                        'type' => 'plan_available',
+                        'status' => 'sent',
+                        'notified_at' => now(),
+                        'attempts' => 1,
+                        'error_message' => null,
+                        'sent_by_user_id' => $userId,
+                    ]);
+                } catch (\Throwable $e) {
+                    Log::error('Error al enviar el correo de plan disponible', [
+                        'client_request_id' => $clientRequest->id,
+                        'plan_id' => $plan->id,
+                        'email' => $email,
+                        'error' => $e->getMessage(),
+                    ]);
+
+                    RequestNotification::create([
+                        'client_request_id' => $clientRequest->id,
+                        'type' => 'plan_available',
+                        'status' => 'failed',
+                        'notified_at' => null,
+                        'attempts' => 1,
+                        'error_message' => $e->getMessage(),
+                        'sent_by_user_id' => $userId,
+                    ]);
+                }
+            })->afterResponse();
         }
     }
 
@@ -83,7 +105,7 @@ class EditPlan extends EditRecord
         ];
     }
 
-    private function updateClientRequestStatus(?ClientRequest $clientRequest, ?int $excludePlanId = null): void {
+    private function updateClientRequestStatus(?ClientRequest $clientRequest, ?int $excludePlanId = null): void
     {
         if (! $clientRequest) {
             return;
@@ -129,7 +151,5 @@ class EditPlan extends EditRecord
             'status' => 'pending',
             'status_changed_at' => now(),
         ]);
-    }
-
     }
 }
