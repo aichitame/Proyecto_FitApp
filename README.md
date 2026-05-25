@@ -51,7 +51,7 @@ Para ejecutar el proyecto en local es necesario disponer de:
 Clonar el repositorio:
 
 ```bash
-git clone URL_DEL_REPOSITORIO
+git clone https://github.com/aichitame/Proyecto_FitApp
 cd Proyecto_FitApp
 ```
 
@@ -90,16 +90,10 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-Ejecutar las migraciones:
+Ejecutar migraciones y seeders para preparar la base de datos con los datos iniciales necesarios para probar la aplicación:
 
 ```bash
 php artisan migrate
-```
-
-En caso de disponer de datos iniciales:
-
-```bash
-php artisan db:seed
 ```
 
 ## Ejecución en local
@@ -123,6 +117,38 @@ composer dev
 ```
 
 Este comando ejecuta de forma conjunta el servidor de Laravel, la cola de trabajos, los logs y Vite en modo desarrollo.
+
+## Accesos principales
+
+Una vez levantado el proyecto en local, se puede acceder a la aplicación desde:
+
+http://127.0.0.1:8000
+
+Panel de administración:
+
+http://127.0.0.1:8000/admin
+
+Área privada del cliente:
+
+http://127.0.0.1:8000/dashboard
+
+## Usuarios de prueba
+
+Después de ejecutar las migraciones y seeders, se pueden utilizar los siguientes usuarios de prueba:
+
+### Administrador
+
+```text
+Email: admin@fitapp.com
+Password: Admin123!
+```
+
+### Cliente
+
+```text
+Email: client@test.com
+Password: Client123!
+```
 
 ## Roles de usuario
 
@@ -230,6 +256,12 @@ MAIL_FROM_NAME="FitApp"
 ```
 
 La configuración concreta puede variar según el entorno utilizado, pero el objetivo del despliegue es permitir que FitApp pueda ejecutarse fuera del entorno local y ser accesible para su revisión y presentación.
+
+## Estado actual del proyecto
+
+El proyecto cuenta con una base funcional completa para revisar el flujo principal de FitApp desde el punto de vista del cliente y del administrador.
+
+Actualmente se puede probar el registro de usuarios, el acceso al área privada, la creación de solicitudes, la revisión desde el panel de administración, la creación y publicación de planes orientativos y el envío de notificaciones por correo electrónico.
 
 ## Consideraciones importantes
 
